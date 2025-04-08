@@ -1,9 +1,52 @@
-﻿@model List<TODO>
+﻿@model dynamic
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to ApplyLog</h1>
-    <p>You have @Model.Count() Todos to do</p>
+    <table class="table table-bordered">
+        <tr>
+            <th>Applications: @Model.application.Count</th>
+            <th>TODOs: @Model.todo.Count</th>
+        </tr>
+        <tr>
+            <td>
+                @if (Model.application.Count == 0)
+                {
+                    <p>No Applications!</p>
+                }
+                else
+                {
+                    <table class="table">
+                        @foreach (var app in Model.application)
+                        {
+                            <tr>
+                                <td>@app.Titel</td>
+                                <td>Read | Edit</td>
+                            </tr>
+                        }
+                    </table>
+                }
+            </td>
+            <td>
+                @if (Model.todo.Count == 0)
+                {
+                    <p>No TODOs!</p>
+                }
+                else
+                {
+                    <table class="table">
+                        @foreach (var todo in Model.todo)
+                        {
+                            <tr>
+                                <td>@todo.Titel</td>
+                                <td>Read | Edit</td>
+                            </tr>
+                        }
+                    </table>
+                }
+            </td>
+        </tr>
+    </table>
 </div>

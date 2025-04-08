@@ -10,7 +10,14 @@ namespace ApplyLog.Controllers
 
         public IActionResult Index()
         {
-            return View(appDbContext.Todos.ToList());
+            List<TODO> todoList = appDbContext.Todos.ToList();
+            List<Bewerbung> applicationsList = appDbContext.Applications.ToList();
+            var obj = new 
+            {
+                todo = todoList,
+                application = applicationsList,
+            };
+            return View(obj);
         }
 
         public IActionResult Privacy()

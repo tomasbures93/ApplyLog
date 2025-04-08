@@ -11,6 +11,11 @@ namespace ApplyLog.Controllers
             return View(appDbContext.Todos.ToList());
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Save(TODO todo)
         {
@@ -22,5 +27,7 @@ namespace ApplyLog.Controllers
             }
             return View(todo);
         }
+        
+
     }
 }
