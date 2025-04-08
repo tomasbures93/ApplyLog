@@ -1,0 +1,61 @@
+﻿@model List<TODO>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>TODO List</h1>
+<p>You have @Model.Count TODOs!</p>
+<table class="table">
+    <tr>
+        <th>Titel</th>
+        <th>Priority</th>
+        <th>Deadline</th>
+        <th>Description</th>
+        <th>Created</th>
+    </tr>
+@foreach(var t in @Model)
+{
+        <tr>
+            <td>@t.Titel</td>
+            <td>@t.PriorityLevel</td>
+            <td>@t.Deadline.ToString()</td>
+            <td>@t.Describtion</td>
+            <td>@t.CreationTime.ToString()</td>
+        </tr>
+
+}
+</table>
+<h2>Create new TODO</h2>
+<form method="post" action="/Todo/Save" class="form-group">
+    <fieldset class="form-group">
+        <table>
+            <tr>
+                <td><label for="titel">Titel:</label></td>
+                <td><input type="text" id="titel" name="Titel" class="form-control" required /></td>
+            </tr>
+            <tr>
+                <td><label for="priority">Priority: </label></td>
+                <td>
+                    <select id="Priority" class="form-control" required>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="deadline">Deadline:</label></td>
+                <td>
+                    <input type="date" id="deadline" name="Deadline" class="form-control"  required />
+                </td>
+            </tr>
+            <tr>
+                <td><label for="description">Description:</label></td>
+                <td><textarea id="description" name="Describtion" class="form-control"  rows="4" cols="50" required></textarea></td>
+            </tr>
+            <tr>
+                <td rowspan="2"><input type="submit" id="saveButton" value="Save" class="btn btn-primary" /></td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
+
