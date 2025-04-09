@@ -10,15 +10,15 @@
         <table>
             <tr>
                 <td><label for="position">Position:</label></td>
-                <td><input type="text" class="form-control" id="position" name="position" /></td>
+                <td><input type="text" class="form-control" id="position" name="position" required/></td>
             </tr>
             <tr>
                 <td><label for="jobort">Job Ort:</label></td>
-                <td><input type="text" class="form-control" id="jobort" name="jobort" /></td>
+                <td><input type="text" class="form-control" id="jobort" name="jobort" required /></td>
             </tr>
             <tr>
                 <td><label for="when">When Applied:</label></td>
-                <td><input type="date" id="when" class="form-control" name="whenapplied" value="@DateTime.Now.ToString("yyyy-MM-dd")" /></td>
+                <td><input type="date" id="when" class="form-control" name="whenapplied" value="@DateTime.Now.ToString("yyyy-MM-dd")" required /></td>
             </tr>
             <tr>
                 <td><label for="kommentar">Kommentar:</label></td>
@@ -31,7 +31,7 @@
             <tr>
                 <td><label for="home">Homeoffice option:</label></td>
                 <td>
-                    <select id="home" class="form-control" name="homeoffice">
+                    <select id="home" class="form-control" name="homeoffice" required>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </select>
@@ -39,7 +39,7 @@
             </tr>
             <tr>
                 <td><label for="url">Job URL:</label></td>
-                <td><input type="text" class="form-control" id="url" name="applicationlink" /></td>
+                <td><input type="text" class="form-control" id="url" name="applicationlink" required /></td>
             </tr>
         </table>
     </fieldset>
@@ -48,7 +48,7 @@
         <table>
             <tr>
                 <td><label for="company">Company Name:</label></td>
-                <td><input type="text" class="form-control" id="company" name="CompanyName" /></td>
+                <td><input type="text" class="form-control" id="company" name="CompanyName" required/></td>
             </tr>
             <tr>
                 <td><label for="companylocation">Location:</label></td>
@@ -68,6 +68,6 @@
             </tr>
         </table>
     </fieldset>
-    <input type="submit" value="Add" class="btn btn-primary"/>
+    <p><a class="btn btn-primary" asp-area="" asp-controller="Application" asp-action="Index">Back</a> <input type="submit" value="Add" class="btn btn-primary" /> </p>
 </form>
 

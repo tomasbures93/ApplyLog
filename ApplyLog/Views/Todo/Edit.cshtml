@@ -7,13 +7,16 @@
     <fieldset class="form-group">
         <table>
             <tr>
+            <tr>
+                <td><input type="hidden" name="ID" id="ID" value="@Model.ID" /></td>
+            </tr>
                 <td><label for="titel">Titel:</label></td>
                 <td><input type="text" id="titel" name="Titel" class="form-control" value="@Model.Titel" required /></td>
             </tr>
             <tr>
                 <td><label for="priority">Priority: </label></td>
                 <td>
-                    <select id="Priority" class="form-control" required>
+                    <select asp-for="PriorityLevel" name="PriorityLevel" class="form-control" required>
                         <option value="Low">Low</option>
                         <option value="Medium">Medium</option>
                         <option value="High">High</option>
@@ -31,7 +34,7 @@
                 <td><textarea id="description" name="Describtion" class="form-control" rows="4" cols="50" required>@Model.Describtion</textarea></td>
             </tr>
             <tr>
-                <td rowspan="2"><input type="submit" id="saveButton" value="Edit" class="btn btn-primary" /></td>
+                <td rowspan="2"><a class="btn btn-primary" asp-area="" asp-controller="Todo" asp-action="Index">Back</a> <input type="submit" id="saveButton" value="Edit" class="btn btn-primary" /></td>
             </tr>
         </table>
     </fieldset>

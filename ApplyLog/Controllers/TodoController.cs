@@ -33,11 +33,23 @@ namespace ApplyLog.Controllers
         }
         public IActionResult EditSave(TODO todo)
         {
+            var todoToAdd = appDbContext.Todos.Where(t => t.ID == todo.ID).FirstOrDefault();
+            if (todoToAdd != null)
+            {
+                todoToAdd.Titel = todo.Titel;
+                todoToAdd.Describtion = todo.Describtion;
+                todoToAdd.Deadline = todo.Deadline;
+                todoToAdd.PriorityLevel = todo.PriorityLevel;
+            }
+            appDbContext.SaveChanges();
             return View(appDbContext.Todos.FirstOrDefault());
         }
         public IActionResult Delete(int id)
         {
-            return View(appDbContext.Todos.FirstOrDefault(i => i.ID == id));
+            var todo = appDbContext.Todos.FirstOrDefault(i => i.ID == id);
+            appDbContext.Todos.Remove(appDbContext.Todos.FirstOrDefault(i => i.ID == id));
+            appDbContext.SaveChanges();
+            return View(todo);
         }
         public IActionResult View(int id)
         {

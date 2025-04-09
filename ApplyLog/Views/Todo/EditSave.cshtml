@@ -1,7 +1,24 @@
 ﻿@model TODO
 @{
-    ViewData["Title"] = "EditSave";
+    ViewData["Title"] = "Edit Finished";
 }
 
-<h1>TODO ID: @Model.ID was edited</h1>
+<h1>TODO - Edit</h1>
+<table class="table">
+    <tr>
+        <th class="w-25">Titel</th>
+        <td>@Model.Titel</td>
+    </tr>
+    <tr>
+        <th class="w-25">Priority</th>
+        <td>@Model.PriorityLevel</td>
+    </tr>
+    <tr>
+        <th class="w-25">Description</th>
+        <td>@Model.Describtion</td>
+    </tr>
+</table>
+<p> Was succesfully edited.</p>
+<p><a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Home</a> <a class="btn btn-primary" asp-area="" asp-controller="Todo" asp-action="Index">Back</a></p>
+
 

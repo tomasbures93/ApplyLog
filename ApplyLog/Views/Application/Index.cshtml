@@ -10,7 +10,7 @@
     <p>You havent applied to any Jobs yet</p>
 } else {
     <input type="search" id="search" class="form-control m-tb" placeholder="Search" />
-    <p>You have applied to @Model.Count Jobs!</p>
+    <p>You applied to @Model.Count Jobs!</p>
     <table class="table">
         <tr>
             <th>Firma</th>
@@ -25,7 +25,7 @@
                 <td>@t.position</td>
                 <td>@t.whenapplied.ToString("dd.MM.yyyy")</td>
                 <td class="text-end">
-                    <a class="btn btn-warning" asp-area="" asp-controller="Application" asp-action="View" asp-route-id="">View</a>
+                    <a class="btn btn-primary" asp-area="" asp-controller="Application" asp-action="View" asp-route-id="">View</a>
                     <a class="btn btn-primary" asp-area="" asp-controller="Application" asp-action="Edit" asp-route-id="">Edit</a>
                     <a class="btn btn-danger" asp-area="" asp-controller="Application" asp-action="Delete" asp-route-id="">Delete</a>
                 </td>

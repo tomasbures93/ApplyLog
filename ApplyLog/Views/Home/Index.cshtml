@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model Tuple<List<TODO>, List<Bewerbung>>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -8,19 +8,19 @@
     <input type="search" id="search" class="form-control m-tb" placeholder="Search" />
     <table class="table table-bordered">
         <tr>
-            <th>Applications: @Model.application.Count</th>
-            <th>TODOs: @Model.todo.Count</th>
+            <th>Applications: @Model.Item2.Count</th>
+            <th>TODOs: @Model.Item1.Count</th>
         </tr>
         <tr>
             <td>
-                @if (Model.application.Count == 0)
+                @if (Model.Item2.Count == 0)
                 {
                     <p>No Applications!</p>
                 }
                 else
                 {
                     <table class="table">
-                        @foreach (var app in Model.application)
+                        @foreach (var app in Model.Item2)
                         {
                             <tr>
                                 <td>@app.position</td>
@@ -34,14 +34,14 @@
                 }
             </td>
             <td>
-                @if (Model.todo.Count == 0)
+                @if (Model.Item1.Count == 0)
                 {
                     <p>No TODOs!</p>
                 }
                 else
                 {
                     <table class="table">
-                        @foreach (var todo in Model.todo)
+                        @foreach (var todo in Model.Item1)
                         {
                             <tr>
                                 <td>@todo.Titel</td>

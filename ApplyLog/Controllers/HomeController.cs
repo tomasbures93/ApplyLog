@@ -12,12 +12,8 @@ namespace ApplyLog.Controllers
         {
             List<TODO> todoList = appDbContext.Todos.ToList();
             List<Bewerbung> applicationsList = appDbContext.Applications.ToList();
-            var obj = new 
-            {
-                todo = todoList,
-                application = applicationsList,
-            };
-            return View(obj);
+            var data = new Tuple<List<TODO>,  List<Bewerbung>>(todoList, applicationsList);
+            return View(data);
         }
 
         public IActionResult Privacy()
