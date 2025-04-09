@@ -27,7 +27,21 @@ namespace ApplyLog.Controllers
             }
             return View(todo);
         }
-        
-
+        public IActionResult Edit(int id)
+        {
+            return View(appDbContext.Todos.FirstOrDefault(i => i.ID == id));
+        }
+        public IActionResult EditSave(TODO todo)
+        {
+            return View(appDbContext.Todos.FirstOrDefault());
+        }
+        public IActionResult Delete(int id)
+        {
+            return View(appDbContext.Todos.FirstOrDefault(i => i.ID == id));
+        }
+        public IActionResult View(int id)
+        {
+            return View(appDbContext.Todos.FirstOrDefault(i => i.ID == id));
+        }
     }
 }

@@ -10,14 +10,14 @@
 } 
 else
 {
+    <input type="search" id="search" class="form-control m-tb" placeholder="Search" />
     <p>You have @Model.Count TODOs!</p>
     <table class="table">
         <tr>
             <th>Titel</th>
             <th>Priority</th>
-            <th>Deadline</th>
-            <th>Description</th>
-            <th>Created</th>
+            <th>Deadline</th>   
+            <th>Action</th>
         </tr>
         @foreach (var t in @Model)
         {
@@ -25,8 +25,11 @@ else
                 <td>@t.Titel</td>
                 <td>@t.PriorityLevel</td>
                 <td>@t.Deadline.ToString()</td>
-                <td>@t.Describtion</td>
-                <td>@t.CreationTime.ToString()</td>
+                <td>
+                    <a class="btn btn-warning" asp-area="" asp-controller="Todo" asp-action="View" asp-route-id="@t.ID">View</a>
+                    <a class="btn btn-primary" asp-area="" asp-controller="Todo" asp-action="Edit" asp-route-id="@t.ID">Edit</a>
+                    <a class="btn btn-danger" asp-area="" asp-controller="Todo" asp-action="Delete" asp-route-id="@t.ID">Delete</a>
+                </td>
             </tr>
 
         }

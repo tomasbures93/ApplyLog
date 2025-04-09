@@ -5,6 +5,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to ApplyLog</h1>
+    <input type="search" id="search" class="form-control m-tb" placeholder="Search" />
     <table class="table table-bordered">
         <tr>
             <th>Applications: @Model.application.Count</th>
@@ -23,7 +24,9 @@
                         {
                             <tr>
                                 <td>@app.Titel</td>
-                                <td>Read | Edit</td>
+                                <td>
+                                    VIEW / EDIT
+                                </td>
                             </tr>
                         }
                     </table>
@@ -41,7 +44,10 @@
                         {
                             <tr>
                                 <td>@todo.Titel</td>
-                                <td>Read | Edit</td>
+                                <td>
+                                    <a class="btn btn-warning" asp-area="" asp-controller="Todo" asp-action="View" asp-route-id="@todo.ID">View</a>
+                                    <a class="btn btn-primary" asp-area="" asp-controller="Todo" asp-action="Edit" asp-route-id="@todo.ID">Edit</a>
+                                </td>
                             </tr>
                         }
                     </table>

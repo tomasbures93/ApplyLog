@@ -1,15 +1,14 @@
-﻿
+﻿@model TODO
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create new TODO</h1>
 <form method="post" action="/Todo/EditSave" class="form-group">
     <fieldset class="form-group">
         <table>
             <tr>
                 <td><label for="titel">Titel:</label></td>
-                <td><input type="text" id="titel" name="Titel" class="form-control" required /></td>
+                <td><input type="text" id="titel" name="Titel" class="form-control" value="@Model.Titel" required /></td>
             </tr>
             <tr>
                 <td><label for="priority">Priority: </label></td>
@@ -24,15 +23,15 @@
             <tr>
                 <td><label for="deadline">Deadline:</label></td>
                 <td>
-                    <input type="date" id="deadline" name="Deadline" class="form-control" required />
+                    <input type="date" id="deadline" name="Deadline" value="@Model.Deadline.ToString()" class="form-control" required />
                 </td>
             </tr>
             <tr>
                 <td><label for="description">Description:</label></td>
-                <td><textarea id="description" name="Describtion" class="form-control" rows="4" cols="50" required></textarea></td>
+                <td><textarea id="description" name="Describtion" class="form-control" rows="4" cols="50" required>@Model.Describtion</textarea></td>
             </tr>
             <tr>
-                <td rowspan="2"><input type="submit" id="saveButton" value="Save" class="btn btn-primary" /></td>
+                <td rowspan="2"><input type="submit" id="saveButton" value="Edit" class="btn btn-primary" /></td>
             </tr>
         </table>
     </fieldset>
