@@ -16,8 +16,8 @@ else
         <tr>
             <th>Titel</th>
             <th>Priority</th>
-            <th>Deadline</th>   
-            <th>Action</th>
+            <th>Deadline</th>
+            <th class="text-end">Options</th>
         </tr>
         @foreach (var t in @Model)
         {
@@ -25,7 +25,7 @@ else
                 <td>@t.Titel</td>
                 <td>@t.PriorityLevel</td>
                 <td>@t.Deadline.ToString("dd.MM.yyyy")</td>
-                <td>
+                <td class="text-end">
                     <a class="btn btn-warning" asp-area="" asp-controller="Todo" asp-action="View" asp-route-id="@t.ID">View</a>
                     <a class="btn btn-primary" asp-area="" asp-controller="Todo" asp-action="Edit" asp-route-id="@t.ID">Edit</a>
                     <a class="btn btn-danger" asp-area="" asp-controller="Todo" asp-action="Delete" asp-route-id="@t.ID">Delete</a>

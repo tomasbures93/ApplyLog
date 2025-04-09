@@ -10,7 +10,7 @@ namespace ApplyLog.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string path = Path.Combine(Directory.GetCurrentDirectory(), "Database.db");
-            optionsBuilder.UseSqlite($"Filename={path}");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlite($"Filename={path}");
         }
     }
 }

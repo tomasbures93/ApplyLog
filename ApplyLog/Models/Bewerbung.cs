@@ -10,7 +10,7 @@
     public class Bewerbung
     {
         public int id { get; set; }
-        public Firma firma { get; set; }
+        public virtual Firma firma { get; set; }
         public string jobort { get; set; }
         public string position { get; set; }
         public DateTime whenapplied { get; set; }

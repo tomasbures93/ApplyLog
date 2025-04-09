@@ -15,5 +15,16 @@ namespace ApplyLog.Controllers
         {
             return View();
         }
+        public IActionResult Save(Bewerbung bewerbung, Firma firma, Kontakt kontakt)
+        {
+            if(bewerbung != null)
+            {
+                firma.Kontakt = kontakt;
+                bewerbung.firma = firma;
+                appDbContext.Applications.Add(bewerbung);
+                appDbContext.SaveChanges();
+            }
+            return View(bewerbung);
+        }
     }
 }
