@@ -41,7 +41,6 @@ namespace ApplyLog.Controllers
                 applicationToEdit.gehalt = bewerbung.gehalt;
                 applicationToEdit.homeoffice = bewerbung.homeoffice;
                 applicationToEdit.applicationlink = bewerbung.applicationlink;
-                // WORKS but if I am editing company I have to check if company with the same name already exist ... need to do taht somehow
                 firma.Kontakt = kontakt;
                 firma.Kontakt.id = companyID;
                 applicationToEdit.firma = firma;
