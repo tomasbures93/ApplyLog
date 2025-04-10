@@ -1,0 +1,91 @@
+﻿@model Bewerbung
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit JobApplication</h1>
+<form method="post" action="/Application/EditSave">
+    <fieldset>
+        <legend>Job Description</legend>
+        <table>
+            <tr>
+                <td><input type="hidden" class="form-control" id="position" name="id" value="@Model.id" required /></td>
+            </tr>
+            <tr>
+                <td><label for="position">Position:</label></td>
+                <td><input type="text" class="form-control" id="position" name="position" value="@Model.position" required /></td>
+            </tr>
+            <td><label for="status">Status:</label></td>
+                <td>
+                    <select asp-for="result" id="status" class="form-control" name="result" required>
+                        <option value="Pending">Pending</option>
+                        <option value="NextRound">Next Round</option>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </td>
+            <tr>
+                <td><label for="jobort">Job Ort:</label></td>
+                <td><input type="text" class="form-control" id="jobort" name="jobort" value="@Model.jobort" required /></td>
+            </tr>
+            <tr>
+                <td><label for="when">When Applied:</label></td>
+                <td><input type="date" id="when" class="form-control" name="whenapplied" value="@Model.whenapplied.ToString("yyyy-MM-dd")" required /></td>
+            </tr>
+            <tr>
+                <td><label for="kommentar">Kommentar:</label></td>
+                <td><textarea id="kommentar" class="form-control" name="kommentar" class="form-control" value="" rows="4" cols="50"></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="salary">Salary:</label></td>
+                <td><input type="number" class="form-control" id="salary" value="@Model.gehalt" name="gehalt" /></td>
+            </tr>
+            <tr>
+                <td><label for="home">Homeoffice option:</label></td>
+                <td>
+                    <select asp-for="homeoffice" id="home" class="form-control" name="homeoffice" required>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="url">Job URL:</label></td>
+                <td><input type="text" class="form-control" id="url" value="@Model.applicationlink" name="applicationlink" required /></td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>Company Info</legend>
+        <table>
+            <tr>
+                <td><input type="hidden" class="form-control" id="company" value="@Model.firma.ID" name="companyID" required /></td>
+            </tr>
+            <tr>
+                <td><label for="company">Company Name:</label></td>
+                <td><input type="text" class="form-control" id="company" value="@Model.firma.CompanyName" name="CompanyName" required /></td>
+            </tr>
+            <tr>
+                <td><label for="companylocation">Location:</label></td>
+                <td><input type="text" class="form-control" id="companylocation" value="@Model.firma.Ort" name="Ort" /></td>
+            </tr>
+            <tr>
+                <td><input type="hidden" class="form-control" id="company" value="@Model.firma.Kontakt.id" name="kontaktID" required /></td>
+            </tr>
+            <tr>
+                <td><label for="tel">Tel Number:</label></td>
+                <td><input type="text" class="form-control" id="tel" value="@Model.firma.Kontakt.number" name="number" /></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" class="form-control" id="email" value="@Model.firma.Kontakt.email" name="email" /></td>
+            </tr>
+            <tr>
+                <td><label for="website">Website:</label></td>
+                <td><input type="text" class="form-control" id="website" value="@Model.firma.Kontakt.website" name="website" /></td>
+            </tr>
+        </table>
+    </fieldset>
+    <p><a class="btn btn-primary" asp-area="" asp-controller="Application" asp-action="Index">Back</a> <input type="submit" value="Edit" class="btn btn-primary" /> </p>
+</form>
+

@@ -25,9 +25,9 @@
                 <td>@t.position</td>
                 <td>@t.whenapplied.ToString("dd.MM.yyyy")</td>
                 <td class="text-end">
-                    <a class="btn btn-primary" asp-area="" asp-controller="Application" asp-action="View" asp-route-id="">View</a>
-                    <a class="btn btn-primary" asp-area="" asp-controller="Application" asp-action="Edit" asp-route-id="">Edit</a>
-                    <a class="btn btn-danger" asp-area="" asp-controller="Application" asp-action="Delete" asp-route-id="">Delete</a>
+                    <a class="btn btn-primary" asp-area="" asp-controller="Application" asp-action="View" asp-route-id="@t.id">View</a>
+                    <a class="btn btn-primary" asp-area="" asp-controller="Application" asp-action="Edit" asp-route-id="@t.id">Edit</a>
+                    <a class="btn btn-danger" asp-area="" asp-controller="Application" asp-action="Delete" asp-route-id="@t.id">Delete</a>
                 </td>
             </tr>
 
