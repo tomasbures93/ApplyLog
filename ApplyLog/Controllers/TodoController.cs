@@ -1,5 +1,6 @@
 ﻿using ApplyLog.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ApplyLog.Controllers
 {
@@ -13,6 +14,14 @@ namespace ApplyLog.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.PriorityOptions = Enum.GetValues(typeof(PriorityLevel))
+                .Cast<PriorityLevel>()
+                .Select(p => new SelectListItem
+                {
+                    Value = p.ToString(),
+                    Text = p.ToString()
+                })
+                .ToList();
             return View();
         }
 
