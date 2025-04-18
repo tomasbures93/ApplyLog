@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ApplyLog.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ApplyLog.Models
@@ -26,6 +27,7 @@ namespace ApplyLog.Models
 
         [Required]
         [Display(Name = "Deadline")]
+        [FutureTime]
         public DateTime Deadline {  get; set; }
 
         [Required]

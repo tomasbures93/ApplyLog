@@ -14,20 +14,20 @@ namespace ApplyLog.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.PriorityOptions = Enum.GetValues(typeof(PriorityLevel))
-                .Cast<PriorityLevel>()
-                .Select(p => new SelectListItem
-                {
-                    Value = p.ToString(),
-                    Text = p.ToString()
-                })
-                .ToList();
             return View();
+        }
+        public IActionResult View(int id)
+        {
+            return View(appDbContext.Todos.FirstOrDefault(i => i.ID == id));
         }
 
         [HttpPost]
         public IActionResult Save(TODO todo)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Create", todo);
+            }
             if (todo != null)
             {
                 todo.CreationTime = DateTime.Now;
@@ -42,6 +42,10 @@ namespace ApplyLog.Controllers
         }
         public IActionResult EditSave(TODO todo)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", todo);
+            }
             var todoToAdd = appDbContext.Todos.Where(t => t.ID == todo.ID).FirstOrDefault();
             if (todoToAdd != null)
             {
@@ -51,7 +55,7 @@ namespace ApplyLog.Controllers
                 todoToAdd.PriorityLevel = todo.PriorityLevel;
             }
             appDbContext.SaveChanges();
-            return View(appDbContext.Todos.FirstOrDefault());
+            return View(appDbContext.Todos.Where(t => t.ID == todo.ID).FirstOrDefault());
         }
         public IActionResult Delete(int id)
         {
@@ -59,10 +63,6 @@ namespace ApplyLog.Controllers
             appDbContext.Todos.Remove(appDbContext.Todos.FirstOrDefault(i => i.ID == id));
             appDbContext.SaveChanges();
             return View(todo);
-        }
-        public IActionResult View(int id)
-        {
-            return View(appDbContext.Todos.FirstOrDefault(i => i.ID == id));
         }
     }
 }

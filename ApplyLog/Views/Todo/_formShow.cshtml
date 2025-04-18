@@ -1,0 +1,34 @@
+﻿<table class="table">
+    <tr>
+        <th class="w-25">Titel</th>
+        <td>@Model.Titel</td>
+    </tr>
+    <tr>
+        <th class="w-25">Created</th>
+        <td>@Model.CreationTime</td>
+    </tr>
+    <tr>
+        <th class="w-25">Priority</th>
+        <td>
+            @if (Model.PriorityLevel == PriorityLevel.High)
+            {
+                <span>❗</span>
+            }
+            @Model.PriorityLevel
+        </td>
+    </tr>
+    <tr>
+        <th class="w-25">Deadline</th>
+        <td>
+            @if (DateTime.Now > Model.Deadline)
+            {
+                <span style="color: red;">&#10008;</span>
+            }
+            @Model.Deadline
+        </td>
+    </tr>
+    <tr>
+        <th class="w-25">Description</th>
+        <td>@Model.Describtion</td>
+    </tr>
+</table>

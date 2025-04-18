@@ -1,0 +1,34 @@
+﻿@model TODO
+<fieldset class="form-group">
+    <table>
+        <tr>
+            <td style="padding: 0.2rem;"><label asp-for="Titel"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="Titel" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="Titel" class="text-danger"></span></td>
+        </tr>
+        <tr>
+            <td style="padding: 0.2rem;"><label asp-for="PriorityLevel"></label></td>
+            <td style="padding: 0.2rem;">
+                <select asp-for="PriorityLevel" class="form-control">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="PriorityLevel" class="text-danger"></span></td>
+        </tr>
+        <tr>
+            <td style="padding: 0.2rem;"><label asp-for="Deadline"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="Deadline" class="form-control"></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="Deadline" class="text-danger"></span></td>
+        </tr>
+        <tr>
+            <td style="padding: 0.2rem;"><label asp-for="Describtion"></label></td>
+            <td style="padding: 0.2rem;"><textarea asp-for="Describtion" class="form-control" rows="4" cols="50"></textarea></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="Describtion" class="text-danger"></span></td>
+        </tr>
+        <tr>
+            <td rowspan="3" style="padding: 0.2rem;"><input type="submit" value="Save" class="btn btn-primary" /></td>
+        </tr>
+    </table>
+</fieldset>

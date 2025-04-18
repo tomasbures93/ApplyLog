@@ -1,23 +1,10 @@
 ﻿@model TODO
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete TODO";
 }
 
 <h1>Delete TODO ID: @Model.ID</h1>
-<table class="table">
-    <tr>
-        <th class="w-25">Titel</th>
-        <td>@Model.Titel</td>
-    </tr>
-    <tr>
-        <th class="w-25">Priority</th>
-        <td>@Model.PriorityLevel</td>
-    </tr>
-    <tr>
-        <th class="w-25">Description</th>
-        <td>@Model.Describtion</td>
-    </tr>
-</table>
-<p>Has been deleted!</p>
-<p><a class="btn btn-primary" asp-area="" asp-controller="Todo" asp-action="Index">Back</a></p>
+<partial name="_formShow" />
+<p>Todo was successfully deleted!</p>
+<p><a asp-controller="Home" asp-action="Index">Home</a> | <a asp-controller="Todo" asp-action="Index">Back</a></p>
 

@@ -1,23 +1,11 @@
 ﻿@model TODO
 @{
-    ViewData["Title"] = "TODO - Save";
+    ViewData["Title"] = "Save TODO";
 }
 
 <h1>TODO - Save</h1>
-<table class="table">
-    <tr>
-        <th class="w-25">Titel</th>
-        <td>@Model.Titel</td>
-    </tr>
-    <tr>
-        <th class="w-25">Priority</th>
-        <td>@Model.PriorityLevel</td>
-    </tr>
-    <tr>
-        <th class="w-25">Description</th>
-        <td>@Model.Describtion</td>
-    </tr>
-</table>
-<p> Was succesfully saved.</p>
-<p><a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Home</a> <a class="btn btn-primary" asp-area="" asp-controller="Todo" asp-action="Index">Back</a></p>
+<partial name="_formShow" />
+<p>Todo was successfully saved.</p>
+<p><a asp-controller="Home" asp-action="Index">Home</a> | <a asp-controller="Todo" asp-action="Index">Back</a> | <a asp-controller="Todo" asp-action="Delete" asp-route-id="@Model.ID">Delete</a></p>
+
 
