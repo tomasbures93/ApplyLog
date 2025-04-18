@@ -34,6 +34,4 @@ namespace ApplyLog.Models
         [Display(Name = "Priority")]
         public PriorityLevel PriorityLevel { get; set; }
     }
-
-    
 }

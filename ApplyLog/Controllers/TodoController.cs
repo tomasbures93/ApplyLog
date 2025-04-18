@@ -64,5 +64,19 @@ namespace ApplyLog.Controllers
             appDbContext.SaveChanges();
             return View(todo);
         }
+
+        public PartialViewResult Search(string search)
+        {
+            if (string.IsNullOrEmpty(search))
+            {
+                List<TODO> empty = new List<TODO>();
+                return PartialView("_searchView",empty);
+            }
+            List<TODO> result = appDbContext.Todos
+                .Where(t => t.Titel.ToLower().Contains(search.ToLower()))
+                .ToList();
+
+            return PartialView("_searchView", result);
+        }
     }
 }

@@ -10,7 +10,12 @@
 } 
 else
 {
-    <input type="search" id="search" class="form-control m-tb" placeholder="Search" />
+    <form asp-controller="Todo" asp-action="Search" data-ajax="true" id="searchForm" data-ajax-update="#result" data-ajax-method="GET" data-ajax-mode="replace">
+        <input type="search" id="search" name="search" class="form-control m-tb" placeholder="Search" onkeyup="searchDB();"/>
+    </form>
+    <div id="result">
+
+    </div>
     <p>You have @Model.Count TODOs!</p>
     <table class="table">
         <tr>
@@ -38,14 +43,22 @@ else
                     @t.Deadline
                 </td>
                 <td class="text-end">
-                    <a asp-area="" asp-controller="Todo" asp-action="View" asp-route-id="@t.ID">View</a> | 
-                    <a asp-area="" asp-controller="Todo" asp-action="Edit" asp-route-id="@t.ID">Edit</a> | 
-                    <a asp-area="" asp-controller="Todo" asp-action="Delete" asp-route-id="@t.ID">Delete</a>
+                    <a asp-controller="Todo" asp-action="View" asp-route-id="@t.ID">View</a> | 
+                    <a asp-controller="Todo" asp-action="Edit" asp-route-id="@t.ID">Edit</a> | 
+                    <a asp-controller="Todo" asp-action="Delete" asp-route-id="@t.ID">Delete</a>
                 </td>
             </tr>
 
         }
     </table>
 
+}
+@section Scripts {
+    <script>
+
+        function searchDB(){
+            $("#searchForm").submit();
+        }
+    </script>
 }
 
