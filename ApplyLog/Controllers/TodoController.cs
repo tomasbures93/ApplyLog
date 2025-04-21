@@ -1,6 +1,5 @@
 ﻿using ApplyLog.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ApplyLog.Controllers
 {
@@ -53,14 +52,14 @@ namespace ApplyLog.Controllers
                 todoToAdd.Describtion = todo.Describtion;
                 todoToAdd.Deadline = todo.Deadline;
                 todoToAdd.PriorityLevel = todo.PriorityLevel;
+                appDbContext.SaveChanges();
             }
-            appDbContext.SaveChanges();
             return View(appDbContext.Todos.Where(t => t.ID == todo.ID).FirstOrDefault());
         }
         public IActionResult Delete(int id)
         {
             var todo = appDbContext.Todos.FirstOrDefault(i => i.ID == id);
-            appDbContext.Todos.Remove(appDbContext.Todos.FirstOrDefault(i => i.ID == id));
+            appDbContext.Todos.Remove(todo);
             appDbContext.SaveChanges();
             return View(todo);
         }

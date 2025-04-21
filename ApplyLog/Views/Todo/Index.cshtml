@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Index TODO";
 }
-<h1>TODO List</h1>
+<h1>TODOs</h1>
 <p><a asp-area="" asp-controller="Todo" asp-action="Create">Create New TODO</a></p>
 <hr />
 @if(Model.Count() == 0){
@@ -11,7 +11,7 @@
 else
 {
     <form asp-controller="Todo" asp-action="Search" data-ajax="true" id="searchForm" data-ajax-update="#result" data-ajax-method="GET" data-ajax-mode="replace">
-        <input type="search" id="search" name="search" class="form-control m-tb" placeholder="Search" onkeyup="searchDB();"/>
+        <input type="search" id="search" name="search" class="form-control m-tb" placeholder="Search TODO" onkeyup="searchDB();"/>
     </form>
     <div id="result">
 

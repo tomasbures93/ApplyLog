@@ -1,0 +1,33 @@
+﻿@model Tuple<List<TODO>, List<Bewerbung>>
+
+@if(Model == null){
+	<p>No TODOs or Application found.</p>
+} 
+else
+{
+	<table class="table table-bordered">
+		<tr>
+			<th colspan="3" class="table-active">Job Applications</th>
+		</tr>
+		@foreach(var app in Model.Item2)
+		{
+			<tr>
+				<td><a asp-action="View" asp-controller="Application" asp-route-id="@app.id">@app.firma.CompanyName</a></td>
+				<td>@app.position</td>
+				<td>@app.result</td>
+			</tr>
+		}
+		<hr />
+		<tr>
+			<th colspan="3" class="table-active">TODOs</th>
+		</tr>
+		@foreach(var todo in Model.Item1)
+		{
+			<tr>
+				<td><a asp-action="View" asp-controller="TODO" asp-route-id="@todo.ID">@todo.Titel</a></td>
+				<td>@todo.PriorityLevel</td>
+				<td>@todo.Deadline</td>
+			</tr>
+		}
+	</table>
+}

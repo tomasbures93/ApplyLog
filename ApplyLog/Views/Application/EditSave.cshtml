@@ -4,5 +4,6 @@
 }
 
 <h1>EditSave</h1>
-<p>@Model.position</p>
-
+<partial name="_formShow" />
+<p>Job application successfully changed.</p>
+<p><a asp-controller="Application" asp-action="Index">Back</a> | <a asp-controller="Application" asp-action="Edit" asp-route-id="@Model.id">Edit</a> | <a asp-controller="Application" asp-action="Delete" asp-route-id="@Model.id">Delete</a></p>
