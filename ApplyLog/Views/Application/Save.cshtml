@@ -1,8 +1,11 @@
 ﻿@model Bewerbung
 @{
-    ViewData["Title"] = "Save";
+    ViewData["Title"] = "Job Application - Save";
 }
 
-<h1>Save</h1>
-<p>@Model.position added</p>
+<h1>Job Application - Save</h1>
+<partial name="_formShow" />
+<p>Job application successfully added.</p>
+<p><a asp-controller="Home" asp-action="Index">Home</a> | <a asp-controller="Application" asp-action="Index">Back</a> | <a asp-controller="Todo" asp-action="Delete" asp-route-id="@Model.id">Delete</a></p>
+
 

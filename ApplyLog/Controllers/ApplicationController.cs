@@ -15,16 +15,18 @@ namespace ApplyLog.Controllers
         {
             return View();
         }
-        public IActionResult Save(Bewerbung bewerbung, Firma firma, Kontakt kontakt)
+        public IActionResult Save(Bewerbung bewerbung)
         {
             if(bewerbung != null)
             {
-                firma.Kontakt = kontakt;
-                bewerbung.firma = firma;
                 appDbContext.Applications.Add(bewerbung);
                 appDbContext.SaveChanges();
             }
             return View(bewerbung);
+        }
+        public IActionResult View(int id)
+        {
+            return View(appDbContext.Applications.FirstOrDefault(i => i.id == id));
         }
         public IActionResult Edit(int id)
         {

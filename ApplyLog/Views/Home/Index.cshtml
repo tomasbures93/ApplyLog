@@ -8,11 +8,11 @@
     <input type="search" id="search" class="form-control m-tb" placeholder="Search" />
     <table class="table table-bordered">
         <tr>
-            <th>Applications: @Model.Item2.Count</th>
-            <th>TODOs: @Model.Item1.Count</th>
+            <th class="w-50">Applications: @Model.Item2.Count</th>
+            <th class="w-50">TODOs: @Model.Item1.Count</th>
         </tr>
         <tr>
-            <td>
+            <td class="w-50">
                 @if (Model.Item2.Count == 0)
                 {
                     <p>No Applications!</p>
@@ -33,7 +33,7 @@
                     </table>
                 }
             </td>
-            <td>
+            <td class="w-50">
                 @if (Model.Item1.Count == 0)
                 {
                     <p>No TODOs!</p>

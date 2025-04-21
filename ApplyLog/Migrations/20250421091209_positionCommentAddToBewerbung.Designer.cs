@@ -3,6 +3,7 @@ using System;
 using ApplyLog.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplyLog.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDataContextModelSnapshot : ModelSnapshot
+    [Migration("20250421091209_positionCommentAddToBewerbung")]
+    partial class positionCommentAddToBewerbung
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,11 +101,9 @@ namespace ApplyLog.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("email")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("number")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("website")

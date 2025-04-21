@@ -1,0 +1,74 @@
+﻿<table class="table">
+	<tr>
+		<th colspan="2" class="text-center">Job Info</th>
+	</tr>
+	<tr>
+		<th class="w-25">Position</th>
+		<td>@Model.position</td>
+	</tr>
+	<tr>
+		<th class="w-25">Application Result</th>
+		<td>@Model.result</td>
+	</tr>
+	<tr>
+		<th class="w-25">Location of job</th>
+		<td>@Model.jobort</td>
+	</tr>
+	<tr>
+		<th class="w-25">Date Applied</th>
+		<td>@Model.whenapplied</td>
+	</tr>
+	<tr>
+		<th class="w-25">Expected Salary</th>
+		<td>@Model.gehalt</td>
+	</tr>
+	<tr>
+		<th class="w-25">Comment / Notes</th>
+		<td>@Model.positionComment</td>
+	</tr>
+	<tr>
+		<th class="w-25">Home Office Possible</th>
+		<td>@Model.homeoffice</td>
+	</tr>
+	<tr>
+		<th class="w-25">Application URL</th>
+		@{
+			var urllink = @Model.applicationlink;
+			if (!string.IsNullOrEmpty(urllink) && !urllink.StartsWith("http"))
+			{
+				urllink = "https://" + urllink;
+			}
+		}
+		<td><a href="@urllink" target="_blank">@Model.applicationlink</a></td>
+	</tr>
+	<tr>
+		<th colspan="2" class="text-center">Company Info</th>
+	</tr>
+	<tr>
+		<th class="w-25">Company</th>
+		<td>@Model.firma.CompanyName</td>
+	</tr>
+	<tr>
+		<th class="w-25">Company location</th>
+		<td>@Model.firma.Ort</td>
+	</tr>
+	<tr>
+		<th class="w-25">Phone Number</th>
+		<td>@Model.firma.Kontakt.number</td>
+	</tr>
+	<tr>
+		<th class="w-25">EMail</th>
+		<td>@Model.firma.Kontakt.email</td>
+	</tr>
+	<tr>
+		<th class="w-25">Website</th>
+		@{
+			var url = @Model.firma.Kontakt.website;
+			if(!string.IsNullOrEmpty(url) && !url.StartsWith("http"))
+			{
+				url = "https://" + url;
+			}
+		}
+		<td><a href="@url" target="_blank">@Model.firma.Kontakt.website</a></td>
+	</tr>
+</table>
