@@ -34,6 +34,17 @@ namespace ApplyLog.Controllers
             return PartialView("_formSearch", data);
         }
 
+        public PartialViewResult TodoData()
+        {
+            var dataForChart = new[]
+            {
+                new { Label = "Low", Count =  appDbContext.Todos.Where(p => p.PriorityLevel == PriorityLevel.Low).Count() },
+                new { Label = "Medium", Count = appDbContext.Todos.Where(p => p.PriorityLevel == PriorityLevel.Medium).Count() },
+                new { Label = "High", Count = appDbContext.Todos.Where(p => p.PriorityLevel == PriorityLevel.High).Count() }
+            };
+            return PartialView("_chartTodo", dataForChart);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

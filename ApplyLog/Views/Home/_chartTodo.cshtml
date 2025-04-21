@@ -1,0 +1,26 @@
+﻿@model IEnumerable<dynamic>
+
+<div id="chart_div" style="width: 500px; height: 500px;"></div>
+
+<script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Status', 'Count'],
+    @foreach (var item in Model)
+    {
+        @: ['@item.Label', @item.Count],
+    }
+            ]);
+
+            var options = {
+                title: 'TODO Priority',
+                pieHole: 0.4
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+</script>

@@ -61,10 +61,19 @@
         </tr>
     </table>
     <hr />
-    <p>GRAPHEN / BALKEN</p>
+    <h2 class="display-4">Graphs</h2>
+    <table class="table">
+        <tr>
+            <td class="w-50">Comming Soon</td>
+            <td class="w-50"><div id="chartContainer">Diagram Loading</div></td>
+        </tr>
+    </table>
 </div>
 
 <script>
+    $(function (){
+        $("#chartContainer").load("/Home/TodoData");
+    });
     function searchDBFull(){
         $("#formSearch").submit();
     }
