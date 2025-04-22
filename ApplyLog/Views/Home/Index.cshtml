@@ -61,16 +61,24 @@
         </tr>
     </table>
     <hr />
-    <h2 class="display-4">Graphs</h2>
     <table class="table">
         <tr>
-            <td class="w-50">Comming Soon</td>
-            <td class="w-50"><div id="chartContainer">Diagram Loading</div></td>
+            <td class="w-50">
+                <h2>Applications GeoChart</h2>
+                <div id="chartContainer2">GeoDiagram Loading</div>
+            </td>
+            <td class="w-50">
+                <h2>TODO Priority</h2>
+                <div id="chartContainer">Diagram Loading</div>
+            </td>
         </tr>
     </table>
 </div>
 
 <script>
+    $(function (){
+        $("#chartContainer2").load("/Home/GeoChart");
+    });
     $(function (){
         $("#chartContainer").load("/Home/TodoData");
     });

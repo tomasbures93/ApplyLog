@@ -1,0 +1,35 @@
+﻿@model List<string>
+<div id="geoChart" style="width: 500px; height: 500px;"></div>
+
+<script type="module">
+    //const API_KEY = 'fill api here';
+
+    // If you want your GeoChart API to work, you need your own API KEY
+    google.charts.load('current', {
+    'packages': ['geochart'],
+    'mapsApiKey': API_KEY
+    });
+    google.charts.setOnLoadCallback(drawMarkersMap);
+
+    function drawMarkersMap() {
+    var data = google.visualization.arrayToDataTable([
+    ['City'],
+    @foreach(var city in Model)
+    {
+        @: ['@city'],
+    }
+    ]);
+
+         var options = {
+           title: 'Test',
+           region: 'DE',
+           displayMode: 'markers',
+           resolution: 'provinces',
+           colorAxis: {colors: ['red', 'yellow']},
+           datalessRegionColor: '#c9d1cb'
+        }
+
+         var chart = new google.visualization.GeoChart(document.getElementById('geoChart'));
+         chart.draw(data, options);
+       };
+</script>
