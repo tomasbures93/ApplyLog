@@ -4,6 +4,7 @@
 
 ![Repository](https://img.shields.io/badge/ASP.NET_Core-MVC-blue)
 ![EntityFramework](https://img.shields.io/badge/EntityFramework-Core-green)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-purple?logo=bootstrap)
 ![License](https://img.shields.io/github/license/tomasbures93/ApplyLog)
 
 ## ✨ Features
@@ -23,6 +24,7 @@
 - Entity Framework Core
 - SQLite
 - Google ChartsAPI (GeoChart and PieChart)
+- Bootstrap 5
 
 ## 💻 Getting Started
 
