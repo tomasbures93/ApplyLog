@@ -48,7 +48,13 @@
                         @foreach (var todo in Model.Item1)
                         {
                             <tr>
-                                <td class="text-start">@todo.Titel</td>
+                                <td class="text-start">
+                                    @if (todo.PriorityLevel == PriorityLevel.High)
+                                    {
+                                        <span>❗</span>
+                                    }
+                                    @todo.Titel
+                                    </td>
                                 <td class="text-end">
                                     <a asp-controller="Todo" asp-action="View" asp-route-id="@todo.ID">View</a> | 
                                     <a asp-controller="Todo" asp-action="Edit" asp-route-id="@todo.ID">Edit</a>

@@ -4,13 +4,24 @@
 	<p>No TODOs found</p>
 } else
 {
-	<table class="table table-bordered">
+	<table class="table">
 		@foreach (var item in Model)
 		{
 			<tr>
 				<td><a asp-controller="Todo" asp-action="View" asp-route-id="@item.ID">@item.Titel</a></td>
-				<td>@item.PriorityLevel</td>
-				<td>@item.Deadline</td>
+				<td>
+					@if (item.PriorityLevel == PriorityLevel.High)
+					{
+						<span>❗</span>
+					}
+					@item.PriorityLevel
+				</td>
+				<td>
+					@if (DateTime.Now > item.Deadline)
+					{
+						<span style="color: red;">&#10008;</span>
+					}@item.Deadline
+				</td>
 			</tr>
 		}
 	</table>
