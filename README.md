@@ -1,4 +1,4 @@
-# Apply Log
+# Apply Log ( v0.8 )
 
 **Apply Log** is a simple web application that helps you stay organized during your job hunt. You can save your job applications, track their status, and manage a personal TODO list to ensure you never miss a step. It also integrates Google ChartsAPI for visual data representation.
 
@@ -16,6 +16,15 @@
 - 📊 Visualize data with Google ChartsAPI:
   - 🌍 GeoChart for geographical data
   - 🥧 PieChart for visualizing task distribution and application stats
+
+## 📅 Planned Features / Roadmap
+
+Here's what’s coming in future versions of Apply Log
+- 1.0	🔍 Integration with Arbeitsagentur Jobsuche API – Search for jobs and view basic information directly in the app
+- 1.4	📄 Job Detail View – See detailed job descriptions for results from the Jobsuche API
+- 2.0	👤 User Accounts – Register and log in to your own account
+  - 💼 Save Favorites – Mark jobs as favorites to view later
+  - 📎 Document Storage – Upload and manage your CV and other documents
 
 ## 🚀 Tech Stack
 
