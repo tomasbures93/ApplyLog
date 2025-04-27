@@ -10,8 +10,8 @@ namespace ApplyLog.Controllers
 
         public IActionResult Index()
         {
-            List<TODO> todoList = appDbContext.Todos.ToList();
-            List<Bewerbung> applicationsList = appDbContext.Applications.ToList();
+            List<TODO> todoList = appDbContext.Todos.OrderBy(d => d.Deadline).Take(5).ToList();
+            List<Bewerbung> applicationsList = appDbContext.Applications.OrderBy(d => d.whenapplied).Take(5).ToList();
             var data = new Tuple<List<TODO>,  List<Bewerbung>>(todoList, applicationsList);
             return View(data);
         }

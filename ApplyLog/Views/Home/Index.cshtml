@@ -5,6 +5,17 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to ApplyLog</h1>
+</div>
+    <div class="text-left">
+        <ul>
+            <li>Here, you can easily keep track of your job search journey.</li>
+            <li>Save your job applications, search through them by company name, and see where you've applied on the Germany map. </li>
+            <li>Create your own to-do list with priorities to stay organized.</li>
+            <li>Check out your progress in colorful charts showing your application locations and your to-do priorities. </li>
+            <li>Ready to get started? You can also search for new job offers directly — just click "Search Jobs" in the menu!</li>
+        </ul>
+    </div>
+    <hr />
     <form asp-action="Search" asp-controller="Home" data-ajax="true" data-ajax-update="#result" data-ajax-method="GET" data-ajax-mode="replace" id="formSearch">
         <input type="search" id="search" name="search" class="form-control m-tb" placeholder="Search something" onkeyup="searchDBFull();"/>
     </form>
@@ -79,7 +90,6 @@
             </td>
         </tr>
     </table>
-</div>
 
 <script>
     $(function (){

@@ -5,6 +5,14 @@
 
 <h1>Applications</h1>
 <p><a asp-controller="Application" asp-action="Create">Add JobApplication</a></p>
+<div class="text-left">
+    <ul>
+        <li>Here you can save all your job applications!</li>
+        <li>Just fill out the form with the company name, job title, and other details — and your application will be saved.</li>
+        <li>Need to find something later? Simply search by company name, and you'll quickly find your saved applications.</li>
+        <li>Stay on top of your job hunt!</li>
+    </ul>
+</div>
 <hr />
 @if(Model.Count() == 0){
     <p>You haven't submitted any applications yet.</p>
