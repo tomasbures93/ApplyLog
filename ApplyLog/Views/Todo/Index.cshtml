@@ -58,7 +58,35 @@ else
 
         }
     </table>
-
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-page="1">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @for(int i = 1; i <= ViewBag.MaxPages; i++)
+                {
+                    if(i > ViewBag.CurrentPage - 4 && i < ViewBag.CurrentPage + 4)
+                    {
+                        if(i == ViewBag.CurrentPage)
+                        {
+                            <li class="page-item active"><a class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+                        } else
+                        {
+                            <li class="page-item"><a class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+                        }
+                    }
+                }
+            <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-page="@ViewBag.MaxPages">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    </div>
 }
 @section Scripts {
     <script>

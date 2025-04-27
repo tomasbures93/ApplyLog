@@ -1,14 +1,38 @@
 ﻿using ApplyLog.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApplyLog.Controllers
 {
     public class TodoController : Controller
     {
-        private AppDbContext appDbContext = new AppDbContext();
-        public IActionResult Index()
+        private AppDbContext appDbContext;
+
+        public TodoController(AppDbContext appDbContext)
         {
-            return View(appDbContext.Todos.ToList());
+            this.appDbContext = appDbContext;
+        }
+
+        public async Task<IActionResult> Index(int page = 1)
+        {
+            int count = await appDbContext.Todos.CountAsync();
+            int maxItemsPerPage = 10;
+            int pages = (int)Math.Ceiling((double)count / maxItemsPerPage);
+
+            if(page == null || page < 1)
+            {
+                page = 1;
+            }
+
+            List<TODO> todos = appDbContext.Todos
+                .Skip((page - 1) * maxItemsPerPage)
+                .Take(maxItemsPerPage)
+                .ToList();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.MaxPages = pages;
+
+            return View(todos);
         }
 
         public IActionResult Create()

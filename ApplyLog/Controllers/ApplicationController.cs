@@ -6,10 +6,32 @@ namespace ApplyLog.Controllers
 {
     public class ApplicationController : Controller
     {
-        private AppDbContext appDbContext = new AppDbContext();
-        public IActionResult Index()
+        private readonly AppDbContext appDbContext;
+
+        public ApplicationController(AppDbContext appDbContext)
         {
-            return View(appDbContext.Applications.ToList());
+            this.appDbContext = appDbContext;
+        }
+        public async Task<IActionResult> Index(int page = 1)
+        {
+            int count = await appDbContext.Applications.CountAsync();
+            int maxItemsPerPage = 10;
+            int pages = (int)Math.Ceiling((double)count / maxItemsPerPage);
+
+            if(page == null || page < 1)
+            {
+                page = 1;
+            }
+
+            List<Bewerbung> applications = appDbContext.Applications
+                .Skip((page - 1) * maxItemsPerPage)
+                .Take(maxItemsPerPage)
+                .ToList();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.MaxPages = pages;
+
+            return View(applications);
         }
 
         public IActionResult Create()

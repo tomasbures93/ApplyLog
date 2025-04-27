@@ -6,13 +6,20 @@ namespace ApplyLog.Controllers
 {
     public class HomeController : Controller
     {
-        private AppDbContext appDbContext = new AppDbContext();
+        private readonly AppDbContext appDbContext; 
+
+        public HomeController(AppDbContext appDbContext)
+        {
+            this.appDbContext = appDbContext;
+        }
 
         public IActionResult Index()
         {
             List<TODO> todoList = appDbContext.Todos.OrderBy(d => d.Deadline).Take(5).ToList();
             List<Bewerbung> applicationsList = appDbContext.Applications.OrderBy(d => d.whenapplied).Take(5).ToList();
             var data = new Tuple<List<TODO>,  List<Bewerbung>>(todoList, applicationsList);
+            ViewBag.Applications = appDbContext.Applications.Count();
+            ViewBag.TODOs = appDbContext.Todos.Count();
             return View(data);
         }
 
