@@ -21,10 +21,11 @@
 ## 📅 Planned Features / Roadmap
 
 Here's what’s coming in future versions of Apply Log
-- 1.5	📄 Job Detail View – See detailed job descriptions for results from the Jobsuche API , second API for more job listings
-- 2.0	👤 User Accounts – Register and log in to your own account
+- 1.5	👤 User Accounts – Register and log in to your own account
   - 💼 Save Favorites – Mark jobs as favorites to view later
   - 📎 Document Storage – Upload and manage your CV and other documents
+- 1.9 💻 Responsive Design
+- 2.0	📄 Job Detail View – See detailed job descriptions for results from the Jobsuche API , second API for more job listings
 
 ## 🚀 Tech Stack
 
