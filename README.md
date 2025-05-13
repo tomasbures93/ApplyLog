@@ -1,4 +1,4 @@
-# Apply Log ( v0.8 )
+# Apply Log ( v1.1 )
 
 **Apply Log** is a simple web application that helps you stay organized during your job hunt. You can save your job applications, track their status, and manage a personal TODO list to ensure you never miss a step. It also integrates Google ChartsAPI for visual data representation.
 
