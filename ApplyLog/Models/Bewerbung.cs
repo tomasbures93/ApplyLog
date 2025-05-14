@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace ApplyLog.Models
 {
@@ -47,5 +48,7 @@ namespace ApplyLog.Models
         public Result result { get; set; }
 
         public virtual Firma firma { get; set; }
+
+        public virtual IdentityUser? User { get; set; }
     }
 }

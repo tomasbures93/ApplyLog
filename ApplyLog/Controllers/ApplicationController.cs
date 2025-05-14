@@ -77,9 +77,9 @@ namespace ApplyLog.Controllers
                 applicationToEdit.result = bewerbung.result;
                 applicationToEdit.firma.CompanyName = bewerbung.firma.CompanyName;
                 applicationToEdit.firma.Ort = bewerbung.firma.Ort;
-                applicationToEdit.firma.Kontakt.number = bewerbung.firma.Kontakt.number;
-                applicationToEdit.firma.Kontakt.email = bewerbung.firma.Kontakt.email;
-                applicationToEdit.firma.Kontakt.website = bewerbung.firma.Kontakt.website;
+                applicationToEdit.firma.Kontakt.Number = bewerbung.firma.Kontakt.Number;
+                applicationToEdit.firma.Kontakt.Email = bewerbung.firma.Kontakt.Email;
+                applicationToEdit.firma.Kontakt.Website = bewerbung.firma.Kontakt.Website;
                 appDbContext.SaveChanges();
             }
             return View(applicationToEdit);

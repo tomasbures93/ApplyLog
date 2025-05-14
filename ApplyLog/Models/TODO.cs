@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ApplyLog.Validation;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ApplyLog.Models
@@ -33,5 +34,12 @@ namespace ApplyLog.Models
         [Required]
         [Display(Name = "Priority")]
         public PriorityLevel PriorityLevel { get; set; }
+
+        public virtual IdentityUser? User { get; set; }
+
+        public TODO()
+        {
+            CreationTime = DateTime.Now;
+        }
     }
 }
