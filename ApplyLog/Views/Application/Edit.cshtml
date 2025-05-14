@@ -5,9 +5,9 @@
 
 <h1>Edit JobApplication</h1>
 <form method="post" action="/Application/EditSave">
-    <input asp-for="id" type="hidden"/>
-    <input asp-for="firma.ID" type="hidden" name="companyID" />
-    <input asp-for="firma.Kontakt.Id" type="hidden" name="kontaktID"/>
+    <input asp-for="Id" type="hidden"/>
+    <input asp-for="Firma.ID" type="hidden" name="companyID" />
+    <input asp-for="Firma.Kontakt.Id" type="hidden" name="kontaktID"/>
     <partial name="_formSave" />
 </form>
 

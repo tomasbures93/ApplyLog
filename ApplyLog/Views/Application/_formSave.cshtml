@@ -5,56 +5,56 @@
     <table>
         <tr></tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="position"></label></td>
-            <td style="padding: 0.2rem;"><input asp-for="position" class="form-control" /></td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="position" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><label asp-for="Position"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="Position" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="Position" class="text-danger"></span></td>
         </tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="jobort"></label></td>
-            <td style="padding: 0.2rem;"><input asp-for="jobort" class="form-control" /></td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="jobort" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><label asp-for="JobOrt"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="JobOrt" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="JobOrt" class="text-danger"></span></td>
         </tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="whenapplied"></label></td>
-            <td style="padding: 0.2rem;"><input asp-for="whenapplied" class="form-control" /></td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="whenapplied" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><label asp-for="WhenApplied"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="WhenApplied" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="WhenApplied" class="text-danger"></span></td>
         </tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="gehalt"></label></td>
-            <td style="padding: 0.2rem;"><input asp-for="gehalt" class="form-control" /></td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="gehalt" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><label asp-for="Gehalt"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="Gehalt" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="Gehalt" class="text-danger"></span></td>
         </tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="homeoffice"></label></td>
+            <td style="padding: 0.2rem;"><label asp-for="HomeOffice"></label></td>
             <td style="padding: 0.2rem;">
-                <select asp-for="homeoffice" class="form-control">
+                <select asp-for="HomeOffice" class="form-control">
                     <option value="true">Yes</option>
                     <option value="false">No</option>
                 </select>
                 </td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="homeoffice" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="HomeOffice" class="text-danger"></span></td>
         </tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="applicationlink"></label></td>
-            <td style="padding: 0.2rem;"><input asp-for="applicationlink" class="form-control" /></td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="applicationlink" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><label asp-for="ApplicationLink"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="ApplicationLink" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="ApplicationLink" class="text-danger"></span></td>
         </tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="positionComment"></label></td>
-            <td style="padding: 0.2rem;"><textarea asp-for="positionComment" class="form-control" rows="4" cols="50" ></textarea></td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="positionComment" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><label asp-for="PositionComment"></label></td>
+            <td style="padding: 0.2rem;"><textarea asp-for="PositionComment" class="form-control" rows="4" cols="50" ></textarea></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="PositionComment" class="text-danger"></span></td>
         </tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="result"></label></td>
+            <td style="padding: 0.2rem;"><label asp-for="Result"></label></td>
             <td style="padding: 0.2rem;">
-                <select asp-for="result" class="form-control">
+                <select asp-for="Result" class="form-control">
                     <option value="Pending">Pending</option>
                     <option value="NextRound">Next Round</option>
                     <option value="No">No</option>
                     <option value="Yes">Yes</option>
                 </select>
             </td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="result" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="Result" class="text-danger"></span></td>
         </tr>
     </table>
 </fieldset>
@@ -62,29 +62,29 @@
     <legend>Company Info</legend>
     <table>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="firma.CompanyName"></label></td>
-            <td style="padding: 0.2rem;"><input asp-for="firma.CompanyName" class="form-control" /></td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="firma.CompanyName" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><label asp-for="Firma.CompanyName"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="Firma.CompanyName" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="Firma.CompanyName" class="text-danger"></span></td>
         </tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="firma.Ort"></label></td>
-            <td style="padding: 0.2rem;"><input asp-for="firma.Ort" class="form-control" /></td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="firma.Ort" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><label asp-for="Firma.Ort"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="Firma.Ort" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="Firma.Ort" class="text-danger"></span></td>
         </tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="firma.Kontakt.Email"></label></td>
-            <td style="padding: 0.2rem;"><input asp-for="firma.Kontakt.Email" class="form-control" /></td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="firma.Kontakt.Email" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><label asp-for="Firma.Kontakt.Email"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="Firma.Kontakt.Email" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="Firma.Kontakt.Email" class="text-danger"></span></td>
         </tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="firma.Kontakt.Number"></label></td>
-            <td style="padding: 0.2rem;"><input asp-for="firma.Kontakt.Number" class="form-control" /></td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="firma.Kontakt.Number" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><label asp-for="Firma.Kontakt.Number"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="Firma.Kontakt.Number" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="Firma.Kontakt.Number" class="text-danger"></span></td>
         </tr>
         <tr>
-            <td style="padding: 0.2rem;"><label asp-for="firma.Kontakt.Website"></label></td>
-            <td style="padding: 0.2rem;"><input asp-for="firma.Kontakt.Website" class="form-control" /></td>
-            <td style="padding: 0.2rem;"><span asp-validation-for="firma.Kontakt.Website" class="text-danger"></span></td>
+            <td style="padding: 0.2rem;"><label asp-for="Firma.Kontakt.Website"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="Firma.Kontakt.Website" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="Firma.Kontakt.Website" class="text-danger"></span></td>
         </tr>
     </table>
     <p><a class="btn btn-primary" asp-area="" asp-controller="Application" asp-action="Index">Back</a> <input type="submit" value="Save" class="btn btn-primary" /> </p>

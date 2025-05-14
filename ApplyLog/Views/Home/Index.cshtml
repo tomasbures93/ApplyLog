@@ -38,10 +38,10 @@
                         @foreach (var app in Model.Item2)
                         {
                             <tr>
-                                <td class="text-start">@app.position</td>
+                                <td class="text-start">@app.Position</td>
                                 <td class="text-end">
-                                    <a asp-controller="Application" asp-action="View" asp-route-id="@app.id">View</a> | 
-                                    <a asp-controller="Application" asp-action="Edit" asp-route-id="@app.id">Edit</a>
+                                    <a asp-controller="Application" asp-action="View" asp-route-id="@app.Id">View</a> | 
+                                    <a asp-controller="Application" asp-action="Edit" asp-route-id="@app.Id">Edit</a>
                                 </td>
                             </tr>
                         }

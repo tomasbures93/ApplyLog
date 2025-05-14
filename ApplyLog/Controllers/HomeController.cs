@@ -16,7 +16,7 @@ namespace ApplyLog.Controllers
         public IActionResult Index()
         {
             List<TODO> todoList = appDbContext.Todos.OrderBy(d => d.Deadline).Take(5).ToList();
-            List<Bewerbung> applicationsList = appDbContext.Applications.OrderBy(d => d.whenapplied).Take(5).ToList();
+            List<Bewerbung> applicationsList = appDbContext.Applications.OrderBy(d => d.WhenApplied).Take(5).ToList();
             var data = new Tuple<List<TODO>,  List<Bewerbung>>(todoList, applicationsList);
             ViewBag.Applications = appDbContext.Applications.Count();
             ViewBag.TODOs = appDbContext.Todos.Count();
@@ -35,7 +35,7 @@ namespace ApplyLog.Controllers
                 return PartialView("_formSearch", null);
             }
             List<TODO> todoList = appDbContext.Todos.Where(s => s.Titel.ToLower().Contains(search.ToLower())).ToList();
-            List<Bewerbung> applicationsList = appDbContext.Applications.Where(c => c.firma.CompanyName.ToLower().Contains(search.ToLower())).ToList();
+            List<Bewerbung> applicationsList = appDbContext.Applications.Where(c => c.Firma.CompanyName.ToLower().Contains(search.ToLower())).ToList();
             var data = new Tuple<List<TODO>, List<Bewerbung>>(todoList, applicationsList);
             return PartialView("_formSearch", data);
         }
@@ -53,7 +53,7 @@ namespace ApplyLog.Controllers
 
         public PartialViewResult GeoChart()
         {
-            List<string> cities = appDbContext.Applications.Select(c => c.jobort).Distinct().ToList();
+            List<string> cities = appDbContext.Applications.Select(c => c.JobOrt).Distinct().ToList();
             return PartialView("_geoChart", cities);
         }
 

@@ -8,9 +8,9 @@
 		@foreach(var company in Model)
 		{
 			<tr>
-				<td><a asp-action="View" asp-controller="Application" asp-route-id="@company.id">@company.firma.CompanyName</a></td>
-				<td>@company.position</td>
-				<td>@company.result</td>
+				<td><a asp-action="View" asp-controller="Application" asp-route-id="@company.Id">@company.Firma.CompanyName</a></td>
+				<td>@company.Position</td>
+				<td>@company.Result</td>
 			</tr>
 		}
 	</table>

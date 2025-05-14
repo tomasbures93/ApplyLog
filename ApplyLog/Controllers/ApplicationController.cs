@@ -40,7 +40,7 @@ namespace ApplyLog.Controllers
         }
         public IActionResult View(int id)
         {
-            return View(appDbContext.Applications.FirstOrDefault(i => i.id == id));
+            return View(appDbContext.Applications.FirstOrDefault(i => i.Id == id));
         }
         public IActionResult Save(Bewerbung bewerbung)
         {
@@ -57,7 +57,7 @@ namespace ApplyLog.Controllers
         }
         public IActionResult Edit(int id)
         {
-            return View(appDbContext.Applications.FirstOrDefault(i => i.id == id));
+            return View(appDbContext.Applications.FirstOrDefault(i => i.Id == id));
         }
         public IActionResult EditSave(Bewerbung bewerbung, int companyID, int kontaktID)
         {
@@ -65,21 +65,21 @@ namespace ApplyLog.Controllers
             {
                 return View("Edit", bewerbung);
             }
-            var applicationToEdit = appDbContext.Applications.Where(i => i.id == bewerbung.id).FirstOrDefault();
+            var applicationToEdit = appDbContext.Applications.Where(i => i.Id == bewerbung.Id).FirstOrDefault();
             if(applicationToEdit != null)
             {
-                applicationToEdit.position = bewerbung.position;
-                applicationToEdit.jobort = bewerbung.jobort;
-                applicationToEdit.gehalt = bewerbung.gehalt;
-                applicationToEdit.positionComment = bewerbung.positionComment;
-                applicationToEdit.homeoffice = bewerbung.homeoffice;
-                applicationToEdit.applicationlink = bewerbung.applicationlink;
-                applicationToEdit.result = bewerbung.result;
-                applicationToEdit.firma.CompanyName = bewerbung.firma.CompanyName;
-                applicationToEdit.firma.Ort = bewerbung.firma.Ort;
-                applicationToEdit.firma.Kontakt.Number = bewerbung.firma.Kontakt.Number;
-                applicationToEdit.firma.Kontakt.Email = bewerbung.firma.Kontakt.Email;
-                applicationToEdit.firma.Kontakt.Website = bewerbung.firma.Kontakt.Website;
+                applicationToEdit.Position = bewerbung.Position;
+                applicationToEdit.JobOrt = bewerbung.JobOrt;
+                applicationToEdit.Gehalt = bewerbung.Gehalt;
+                applicationToEdit.PositionComment = bewerbung.PositionComment;
+                applicationToEdit.HomeOffice = bewerbung.HomeOffice;
+                applicationToEdit.ApplicationLink = bewerbung.ApplicationLink;
+                applicationToEdit.Result = bewerbung.Result;
+                applicationToEdit.Firma.CompanyName = bewerbung.Firma.CompanyName;
+                applicationToEdit.Firma.Ort = bewerbung.Firma.Ort;
+                applicationToEdit.Firma.Kontakt.Number = bewerbung.Firma.Kontakt.Number;
+                applicationToEdit.Firma.Kontakt.Email = bewerbung.Firma.Kontakt.Email;
+                applicationToEdit.Firma.Kontakt.Website = bewerbung.Firma.Kontakt.Website;
                 appDbContext.SaveChanges();
             }
             return View(applicationToEdit);
@@ -87,8 +87,8 @@ namespace ApplyLog.Controllers
 
         public IActionResult Delete(int id)
         {
-            var bewerbung = appDbContext.Applications.FirstOrDefault(i => i.id == id);
-            var viewData = appDbContext.Applications.Include(f => f.firma).Include(k => k.firma.Kontakt).FirstOrDefault(i => i.id == id);
+            var bewerbung = appDbContext.Applications.FirstOrDefault(i => i.Id == id);
+            var viewData = appDbContext.Applications.Include(f => f.Firma).Include(k => k.Firma.Kontakt).FirstOrDefault(i => i.Id == id);
             appDbContext.Applications.Remove(bewerbung);
             appDbContext.SaveChanges();
             return View(viewData);
@@ -102,7 +102,7 @@ namespace ApplyLog.Controllers
                 return PartialView("_searchView", empty);
             }
             List<Bewerbung> applications = appDbContext.Applications
-                .Where(t => t.firma.CompanyName.ToLower().Contains(search.ToLower()))
+                .Where(t => t.Firma.CompanyName.ToLower().Contains(search.ToLower()))
                 .ToList();
             return PartialView("_searchView", applications);
         }
