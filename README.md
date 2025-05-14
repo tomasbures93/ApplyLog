@@ -7,6 +7,10 @@
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-purple?logo=bootstrap)
 ![License](https://img.shields.io/github/license/tomasbures93/ApplyLog)
 
+## Working On
+- Adding Identity ( Login / Register ) to Apply Log
+  - TODOcontroller done
+
 ## ✨ Features
 
 - ✅ Create, edit, and delete job applications
