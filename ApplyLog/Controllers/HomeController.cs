@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using ApplyLog.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApplyLog.Controllers
@@ -7,10 +8,12 @@ namespace ApplyLog.Controllers
     public class HomeController : Controller
     {
         private readonly AppDbContext appDbContext; 
+        private readonly UserManager<IdentityUser> userManager;
 
-        public HomeController(AppDbContext appDbContext)
+        public HomeController(AppDbContext appDbContext, UserManager<IdentityUser> userManager)
         {
             this.appDbContext = appDbContext;
+            this.userManager = userManager;
         }
 
         public IActionResult Index()

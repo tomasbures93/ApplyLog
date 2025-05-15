@@ -9,7 +9,7 @@ namespace ApplyLog.Controllers
     [Authorize]
     public class TodoController : Controller
     {
-        private AppDbContext appDbContext;
+        private readonly AppDbContext appDbContext;
         private readonly UserManager<IdentityUser> userManager;
 
         public TodoController(AppDbContext appDbContext, UserManager<IdentityUser> userManager)
@@ -20,7 +20,7 @@ namespace ApplyLog.Controllers
 
         public async Task<IActionResult> Index(int page = 1)
         {
-            var user = userManager.GetUserAsync(HttpContext.User).Result;
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
 
             int count = await appDbContext.Todos.Where(i => i.User == user).CountAsync();
             int maxItemsPerPage = 10;
@@ -47,9 +47,10 @@ namespace ApplyLog.Controllers
         {
             return View();
         }
+
         public IActionResult View(int id)
         {
-            var user = userManager.GetUserAsync(HttpContext.User).Result;
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
             TODO todo = appDbContext.Todos.Where(i => i.User == user).FirstOrDefault(i => i.ID == id);
             if(todo == null)
             {
@@ -58,10 +59,9 @@ namespace ApplyLog.Controllers
             return View(todo);
         }
 
-        [HttpPost]
         public IActionResult Save(TODO todo)
         {
-            var user = userManager.GetUserAsync(HttpContext.User).Result;
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
             todo.User = user;
             if (!ModelState.IsValid)
             {
@@ -74,9 +74,10 @@ namespace ApplyLog.Controllers
             }
             return View(todo);
         }
+
         public IActionResult Edit(int id)
         {
-            var user = userManager.GetUserAsync(HttpContext.User).Result;
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
             TODO todo = appDbContext.Todos.Where(i => i.User == user).FirstOrDefault(i => i.ID == id);
             if(todo == null)
             {
@@ -84,6 +85,7 @@ namespace ApplyLog.Controllers
             }
             return View(todo);
         }
+
         public IActionResult EditSave(TODO todo)
         {
             if(todo.Titel == null && todo.User == null)
@@ -94,8 +96,8 @@ namespace ApplyLog.Controllers
             {
                 return View("Edit", todo);
             }
-            var user = userManager.GetUserAsync(HttpContext.User).Result;
-            var todoToAdd = appDbContext.Todos.Where(t => t.ID == todo.ID && t.User == user).FirstOrDefault();
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
+            TODO todoToAdd = appDbContext.Todos.Where(t => t.ID == todo.ID && t.User == user).FirstOrDefault();
             if (todoToAdd != null)
             {
                 todoToAdd.Titel = todo.Titel;
@@ -106,14 +108,15 @@ namespace ApplyLog.Controllers
             }
             return View(appDbContext.Todos.Where(t => t.ID == todo.ID && t.User == user).FirstOrDefault());
         }
+
         public IActionResult Delete(int id)
         {
             if(id == 0)
             {
                 return NotFound("Something went wrong");
             }
-            var user = userManager.GetUserAsync(HttpContext.User).Result;
-            var todo = appDbContext.Todos.Where(i => i.User == user).FirstOrDefault(i => i.ID == id);
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
+            TODO todo = appDbContext.Todos.Where(i => i.User == user).FirstOrDefault(i => i.ID == id);
             if(todo != null)
             {
                 appDbContext.Todos.Remove(todo);
@@ -127,7 +130,7 @@ namespace ApplyLog.Controllers
 
         public PartialViewResult Search(string search)
         {
-            var user = userManager.GetUserAsync(HttpContext.User).Result;
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
             if (string.IsNullOrEmpty(search))
             {
                 List<TODO> empty = new List<TODO>();
