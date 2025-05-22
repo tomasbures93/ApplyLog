@@ -11,6 +11,7 @@
 - 22.05.2025 ( 1.2 )
   - Identity Added ( User can Register and Login )
   - Added an option between SQLite and SQLserver
+  - Added 2 Test User Accounts and 1 Admin Account ( Testing purpose )
 
 ## ✨ Features
 
