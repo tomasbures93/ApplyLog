@@ -12,9 +12,9 @@ else
 		@foreach(var app in Model.Item2)
 		{
 			<tr>
-				<td><a asp-action="View" asp-controller="Application" asp-route-id="@app.id">@app.firma.CompanyName</a></td>
-				<td>@app.position</td>
-				<td>@app.result</td>
+				<td><a asp-action="View" asp-controller="Application" asp-route-id="@app.Id">@app.Firma.CompanyName</a></td>
+				<td>@app.Position</td>
+				<td>@app.Result</td>
 			</tr>
 		}
 		<hr />

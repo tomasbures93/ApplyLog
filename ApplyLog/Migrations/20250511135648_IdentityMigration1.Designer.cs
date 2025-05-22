@@ -3,6 +3,7 @@ using System;
 using ApplyLog.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplyLog.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDataContextModelSnapshot : ModelSnapshot
+    [Migration("20250511135648_IdentityMigration1")]
+    partial class IdentityMigration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,51 +26,46 @@ namespace ApplyLog.Migrations
 
             modelBuilder.Entity("ApplyLog.Models.Bewerbung", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ApplicationLink")
+                    b.Property<string>("applicationlink")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("FirmaID")
+                    b.Property<int>("firmaID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Gehalt")
+                    b.Property<int?>("gehalt")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("HomeOffice")
+                    b.Property<bool>("homeoffice")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("JobOrt")
+                    b.Property<string>("jobort")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Position")
+                    b.Property<string>("position")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PositionComment")
+                    b.Property<string>("positionComment")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Result")
+                    b.Property<int>("result")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("UserId")
+                    b.Property<DateTime>("whenapplied")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("WhenApplied")
-                        .HasColumnType("TEXT");
+                    b.HasKey("id");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("FirmaID");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("firmaID");
 
                     b.ToTable("Applications");
                 });
@@ -83,7 +81,7 @@ namespace ApplyLog.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("KontaktId")
+                    b.Property<int?>("Kontaktid")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Ort")
@@ -91,29 +89,29 @@ namespace ApplyLog.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("KontaktId");
+                    b.HasIndex("Kontaktid");
 
                     b.ToTable("Firma");
                 });
 
             modelBuilder.Entity("ApplyLog.Models.Kontakt", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Number")
+                    b.Property<string>("number")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Website")
+                    b.Property<string>("website")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Kontakt");
                 });
@@ -143,12 +141,7 @@ namespace ApplyLog.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Todos");
                 });
@@ -347,37 +340,22 @@ namespace ApplyLog.Migrations
 
             modelBuilder.Entity("ApplyLog.Models.Bewerbung", b =>
                 {
-                    b.HasOne("ApplyLog.Models.Firma", "Firma")
+                    b.HasOne("ApplyLog.Models.Firma", "firma")
                         .WithMany()
-                        .HasForeignKey("FirmaID")
+                        .HasForeignKey("firmaID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Firma");
-
-                    b.Navigation("User");
+                    b.Navigation("firma");
                 });
 
             modelBuilder.Entity("ApplyLog.Models.Firma", b =>
                 {
                     b.HasOne("ApplyLog.Models.Kontakt", "Kontakt")
                         .WithMany()
-                        .HasForeignKey("KontaktId");
+                        .HasForeignKey("Kontaktid");
 
                     b.Navigation("Kontakt");
-                });
-
-            modelBuilder.Entity("ApplyLog.Models.TODO", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

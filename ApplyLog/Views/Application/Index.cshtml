@@ -33,13 +33,13 @@
         @foreach (var t in @Model)
         {
             <tr>
-                <td>@t.firma.CompanyName</td>
-                <td>@t.position</td>
-                <td>@t.whenapplied.ToString("dd.MM.yyyy")</td>
+                <td>@t.Firma.CompanyName</td>
+                <td>@t.Position</td>
+                <td>@t.WhenApplied.ToString("dd.MM.yyyy")</td>
                 <td class="text-end">
-                    <a asp-controller="Application" asp-action="View" asp-route-id="@t.id">View</a> | 
-                    <a asp-controller="Application" asp-action="Edit" asp-route-id="@t.id">Edit</a> | 
-                    <a asp-controller="Application" asp-action="Delete" asp-route-id="@t.id">Delete</a>
+                    <a asp-controller="Application" asp-action="View" asp-route-id="@t.Id">View</a> | 
+                    <a asp-controller="Application" asp-action="Edit" asp-route-id="@t.Id">Edit</a> | 
+                    <a asp-controller="Application" asp-action="Delete" asp-route-id="@t.Id">Delete</a>
                 </td>
             </tr>
 

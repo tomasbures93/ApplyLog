@@ -1,20 +1,26 @@
 ﻿using ApplyLog.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApplyLog.Controllers
 {
+    [Authorize]     // still need to fully test it
     public class ApplicationController : Controller
     {
         private readonly AppDbContext appDbContext;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public ApplicationController(AppDbContext appDbContext)
+        public ApplicationController(AppDbContext appDbContext, UserManager<IdentityUser> userManager)
         {
             this.appDbContext = appDbContext;
+            this.userManager = userManager;
         }
         public async Task<IActionResult> Index(int page = 1)
         {
-            int count = await appDbContext.Applications.CountAsync();
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
+            int count = await appDbContext.Applications.Where(i => i.User == user).CountAsync();
             int maxItemsPerPage = 10;
             int pages = (int)Math.Ceiling((double)count / maxItemsPerPage);
 
@@ -24,13 +30,13 @@ namespace ApplyLog.Controllers
             }
 
             List<Bewerbung> applications = appDbContext.Applications
+                .Where(i => i.User == user)
                 .Skip((page - 1) * maxItemsPerPage)
                 .Take(maxItemsPerPage)
                 .ToList();
 
             ViewBag.CurrentPage = page;
             ViewBag.MaxPages = pages;
-
             return View(applications);
         }
 
@@ -40,10 +46,18 @@ namespace ApplyLog.Controllers
         }
         public IActionResult View(int id)
         {
-            return View(appDbContext.Applications.FirstOrDefault(i => i.id == id));
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
+            Bewerbung application = appDbContext.Applications.Where(i => i.User == user).FirstOrDefault(i => i.Id == id);
+            if(application == null)
+            {
+                return NotFound("Something went wrong!");
+            }
+            return View(application);
         }
         public IActionResult Save(Bewerbung bewerbung)
         {
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
+            bewerbung.User = user;
             if (!ModelState.IsValid)
             {
                 return View("Create", bewerbung);
@@ -57,29 +71,37 @@ namespace ApplyLog.Controllers
         }
         public IActionResult Edit(int id)
         {
-            return View(appDbContext.Applications.FirstOrDefault(i => i.id == id));
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
+            Bewerbung application = appDbContext.Applications.FirstOrDefault(i => i.Id == id && i.User == user);
+            if(application == null)
+            {
+                return NotFound("Something went wrong");
+            }
+            return View(application);
         }
+
+        // Rework completely
         public IActionResult EditSave(Bewerbung bewerbung, int companyID, int kontaktID)
         {
             if (!ModelState.IsValid)
             {
                 return View("Edit", bewerbung);
             }
-            var applicationToEdit = appDbContext.Applications.Where(i => i.id == bewerbung.id).FirstOrDefault();
+            Bewerbung applicationToEdit = appDbContext.Applications.Where(i => i.Id == bewerbung.Id).FirstOrDefault();
             if(applicationToEdit != null)
             {
-                applicationToEdit.position = bewerbung.position;
-                applicationToEdit.jobort = bewerbung.jobort;
-                applicationToEdit.gehalt = bewerbung.gehalt;
-                applicationToEdit.positionComment = bewerbung.positionComment;
-                applicationToEdit.homeoffice = bewerbung.homeoffice;
-                applicationToEdit.applicationlink = bewerbung.applicationlink;
-                applicationToEdit.result = bewerbung.result;
-                applicationToEdit.firma.CompanyName = bewerbung.firma.CompanyName;
-                applicationToEdit.firma.Ort = bewerbung.firma.Ort;
-                applicationToEdit.firma.Kontakt.number = bewerbung.firma.Kontakt.number;
-                applicationToEdit.firma.Kontakt.email = bewerbung.firma.Kontakt.email;
-                applicationToEdit.firma.Kontakt.website = bewerbung.firma.Kontakt.website;
+                applicationToEdit.Position = bewerbung.Position;
+                applicationToEdit.JobOrt = bewerbung.JobOrt;
+                applicationToEdit.Gehalt = bewerbung.Gehalt;
+                applicationToEdit.PositionComment = bewerbung.PositionComment;
+                applicationToEdit.HomeOffice = bewerbung.HomeOffice;
+                applicationToEdit.ApplicationLink = bewerbung.ApplicationLink;
+                applicationToEdit.Result = bewerbung.Result;
+                applicationToEdit.Firma.CompanyName = bewerbung.Firma.CompanyName;
+                applicationToEdit.Firma.Ort = bewerbung.Firma.Ort;
+                applicationToEdit.Firma.Kontakt.Number = bewerbung.Firma.Kontakt.Number;
+                applicationToEdit.Firma.Kontakt.Email = bewerbung.Firma.Kontakt.Email;
+                applicationToEdit.Firma.Kontakt.Website = bewerbung.Firma.Kontakt.Website;
                 appDbContext.SaveChanges();
             }
             return View(applicationToEdit);
@@ -87,8 +109,13 @@ namespace ApplyLog.Controllers
 
         public IActionResult Delete(int id)
         {
-            var bewerbung = appDbContext.Applications.FirstOrDefault(i => i.id == id);
-            var viewData = appDbContext.Applications.Include(f => f.firma).Include(k => k.firma.Kontakt).FirstOrDefault(i => i.id == id);
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
+            Bewerbung bewerbung = appDbContext.Applications.FirstOrDefault(i => i.Id == id && i.User == user);
+            if(bewerbung == null)
+            {
+                return NotFound("Something went Wrong");
+            }
+            Bewerbung viewData = appDbContext.Applications.Where(i => i.User == user).Include(f => f.Firma).Include(k => k.Firma.Kontakt).FirstOrDefault(i => i.Id == id);
             appDbContext.Applications.Remove(bewerbung);
             appDbContext.SaveChanges();
             return View(viewData);
@@ -96,13 +123,14 @@ namespace ApplyLog.Controllers
 
         public PartialViewResult Search(string search)
         {
+            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
             if (string.IsNullOrEmpty(search))
             {
                 List<Bewerbung> empty = new List<Bewerbung>();
                 return PartialView("_searchView", empty);
             }
             List<Bewerbung> applications = appDbContext.Applications
-                .Where(t => t.firma.CompanyName.ToLower().Contains(search.ToLower()))
+                .Where(t => t.Firma.CompanyName.ToLower().Contains(search.ToLower()) && t.User == user)
                 .ToList();
             return PartialView("_searchView", applications);
         }
