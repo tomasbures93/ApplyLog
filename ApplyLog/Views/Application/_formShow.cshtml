@@ -4,71 +4,71 @@
 	</tr>
 	<tr>
 		<th class="w-25">Position</th>
-		<td>@Model.position</td>
+		<td>@Model.Position</td>
 	</tr>
 	<tr>
 		<th class="w-25">Application Result</th>
-		<td>@Model.result</td>
+		<td>@Model.Result</td>
 	</tr>
 	<tr>
 		<th class="w-25">Location of job</th>
-		<td>@Model.jobort</td>
+		<td>@Model.JobOrt</td>
 	</tr>
 	<tr>
 		<th class="w-25">Date Applied</th>
-		<td>@Model.whenapplied</td>
+		<td>@Model.WhenApplied</td>
 	</tr>
 	<tr>
 		<th class="w-25">Expected Salary</th>
-		<td>@Model.gehalt</td>
+		<td>@Model.Gehalt</td>
 	</tr>
 	<tr>
 		<th class="w-25">Comment / Notes</th>
-		<td>@Model.positionComment</td>
+		<td>@Model.PositionComment</td>
 	</tr>
 	<tr>
 		<th class="w-25">Home Office Possible</th>
-		<td>@Model.homeoffice</td>
+		<td>@Model.HomeOffice</td>
 	</tr>
 	<tr>
 		<th class="w-25">Application URL</th>
 		@{
-			var urllink = @Model.applicationlink;
+			var urllink = @Model.ApplicationLink;
 			if (!string.IsNullOrEmpty(urllink) && !urllink.StartsWith("http"))
 			{
 				urllink = "https://" + urllink;
 			}
 		}
-		<td><a href="@urllink" target="_blank">@Model.applicationlink</a></td>
+		<td><a href="@urllink" target="_blank">@Model.ApplicationLink</a></td>
 	</tr>
 	<tr>
 		<th colspan="2" class="text-center">Company Info</th>
 	</tr>
 	<tr>
 		<th class="w-25">Company</th>
-		<td>@Model.firma.CompanyName</td>
+		<td>@Model.Firma.CompanyName</td>
 	</tr>
 	<tr>
 		<th class="w-25">Company location</th>
-		<td>@Model.firma.Ort</td>
+		<td>@Model.Firma.Ort</td>
 	</tr>
 	<tr>
 		<th class="w-25">Phone Number</th>
-		<td>@Model.firma.Kontakt.number</td>
+		<td>@Model.Firma.Kontakt.Number</td>
 	</tr>
 	<tr>
 		<th class="w-25">EMail</th>
-		<td>@Model.firma.Kontakt.email</td>
+		<td>@Model.Firma.Kontakt.Email</td>
 	</tr>
 	<tr>
 		<th class="w-25">Website</th>
 		@{
-			var url = @Model.firma.Kontakt.website;
+			var url = @Model.Firma.Kontakt.Website;
 			if(!string.IsNullOrEmpty(url) && !url.StartsWith("http"))
 			{
 				url = "https://" + url;
 			}
 		}
-		<td><a href="@url" target="_blank">@Model.firma.Kontakt.website</a></td>
+		<td><a href="@url" target="_blank">@Model.Firma.Kontakt.Website</a></td>
 	</tr>
 </table>

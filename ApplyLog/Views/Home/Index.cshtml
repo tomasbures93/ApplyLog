@@ -1,4 +1,6 @@
-﻿@model Tuple<List<TODO>, List<Bewerbung>>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@model Tuple<List<TODO>, List<Bewerbung>>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -78,6 +80,7 @@
         </tr>
     </table>
     <hr />
+    @if(SignInManager.IsSignedIn(User)){
     <table class="table">
         <tr>
             <td class="w-50">
@@ -90,7 +93,7 @@
             </td>
         </tr>
     </table>
-
+    }
 <script>
     $(function (){
         $("#chartContainer2").load("/Home/GeoChart");

@@ -72,7 +72,12 @@ namespace ApplyLog.Controllers
         public IActionResult Edit(int id)
         {
             IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
-            return View(appDbContext.Applications.FirstOrDefault(i => i.Id == id && i.User == user));
+            Bewerbung application = appDbContext.Applications.FirstOrDefault(i => i.Id == id && i.User == user);
+            if(application == null)
+            {
+                return NotFound("Something went wrong");
+            }
+            return View(application);
         }
 
         // Rework completely
@@ -106,6 +111,10 @@ namespace ApplyLog.Controllers
         {
             IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
             Bewerbung bewerbung = appDbContext.Applications.FirstOrDefault(i => i.Id == id && i.User == user);
+            if(bewerbung == null)
+            {
+                return NotFound("Something went Wrong");
+            }
             Bewerbung viewData = appDbContext.Applications.Where(i => i.User == user).Include(f => f.Firma).Include(k => k.Firma.Kontakt).FirstOrDefault(i => i.Id == id);
             appDbContext.Applications.Remove(bewerbung);
             appDbContext.SaveChanges();

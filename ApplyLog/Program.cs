@@ -14,11 +14,20 @@ namespace ApplyLog
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
-            string DBpath = Path.Combine(Directory.GetCurrentDirectory(), builder.Configuration.GetConnectionString("MeineDatenbank"));
-            string connectionString = $"Data Source ={DBpath}";
-
-            builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseLazyLoadingProxies().UseSqlite(connectionString));
+            string db = "";
+            if(db == "sqllite")
+            {
+                string DBpath = Path.Combine(Directory.GetCurrentDirectory(), builder.Configuration.GetConnectionString("MeineDatenbank"));
+                string connectionString = $"Data Source ={DBpath}";
+                builder.Services.AddDbContext<AppDbContext>(options =>
+                    options.UseLazyLoadingProxies().UseSqlite(connectionString));
+            } 
+            else
+            {
+                string connectionString = builder.Configuration.GetConnectionString("MSSQL");
+                builder.Services.AddDbContext<AppDbContext>(options =>
+                    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
+            }  
 
             builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 
@@ -43,6 +52,7 @@ namespace ApplyLog
                     admin.Wait();
                     var user = roleContext.CreateAsync(new IdentityRole("User"));
                     user.Wait();
+                    app.Logger.LogInformation("-> Admin & User Role Created");
                 }
 
                 // Admin User
@@ -58,8 +68,31 @@ namespace ApplyLog
                     userCreate.Wait();
                     var addToRole = userContext.AddToRoleAsync(adminUser, "Admin");
                     addToRole.Wait();
+                    app.Logger.LogInformation("-> admin@admin.de User Created and added to the Admin Role");
                 }
 
+                IdentityUser testUser1 = new IdentityUser();
+                testUser1.Email = "tester@tester.de";
+                testUser1.UserName = "tester@tester.de";
+                string pass1 = "Test123!";
+                IdentityUser testUser2 = new IdentityUser();
+                testUser2.Email = "test@test.de";
+                testUser2.UserName = "test@test.de";
+                string pass2 = "Test123!";
+                var testUser1Exists = userContext.FindByEmailAsync(testUser1.Email).Result;
+                if (testUser1Exists == null)
+                {
+                    var userCreate = userContext.CreateAsync(testUser1, pass1);
+                    userCreate.Wait();
+                    var addToRole = userContext.AddToRoleAsync(testUser1, "User");
+                    addToRole.Wait();
+                    app.Logger.LogInformation("tester@tester.de User Created and added to the User Role");
+                    userCreate = userContext.CreateAsync(testUser2, pass2);
+                    userCreate.Wait();
+                    addToRole = userContext.AddToRoleAsync(testUser2, "User");
+                    addToRole.Wait();
+                    app.Logger.LogInformation("test@test.de User Created and added to the User Role");
+                }
             }
 
             // Configure the HTTP request pipeline.
