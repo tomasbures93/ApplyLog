@@ -8,12 +8,9 @@
 ![License](https://img.shields.io/github/license/tomasbures93/ApplyLog)
 
 ## Changelog
-- 22.05.2025
+- 22.05.2025 ( 1.2 )
   - Identity Added ( User can Register and Login )
   - Added an option between SQLite and SQLserver
-
-## Last Update
-22.05.2025
 
 ## ✨ Features
 
