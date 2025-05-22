@@ -1,4 +1,4 @@
-# Apply Log ( v1.1 )
+# Apply Log ( v1.2 )
 
 **Apply Log** is a simple web application that helps you stay organized during your job hunt. You can save your job applications, track their status, and manage a personal TODO list to ensure you never miss a step. It also integrates Google ChartsAPI for visual data representation.
 
@@ -7,9 +7,8 @@
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-purple?logo=bootstrap)
 ![License](https://img.shields.io/github/license/tomasbures93/ApplyLog)
 
-## Working On
-- Adding Identity ( Login / Register ) to Apply Log
-  - TODOcontroller done
+## Last Update
+22.05.2025
 
 ## ✨ Features
 
