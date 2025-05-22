@@ -7,6 +7,11 @@
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-purple?logo=bootstrap)
 ![License](https://img.shields.io/github/license/tomasbures93/ApplyLog)
 
+## Changelog
+- 22.05.2025
+  - Identity Added ( User can Register and Login )
+  - Added an option between SQLite and SQLserver
+
 ## Last Update
 22.05.2025
 
@@ -35,7 +40,7 @@ Here's what’s coming in future versions of Apply Log
 - C#
 - ASP.NET Core MVC
 - Entity Framework Core
-- SQLite
+- SQL / SQLite
 - Bootstrap 5
 - Google ChartsAPI 
 - Arbeitsagentur Jobsuche API
@@ -47,7 +52,9 @@ Here's what’s coming in future versions of Apply Log
    git clone https://github.com/tomasbures93/ApplyLog.git
 2. Open the solution in Visual Studio or your preferred IDE.
 
-3. Run the application — it will automatically create the SQLite database on first launch.
+3. Go to Program.cs and setup your prefered way of Database ( SQL or SQLite )
+
+3. Run the application
 
 ## 📄 License
 This project is licensed under the MIT License – see the LICENSE file for details.
