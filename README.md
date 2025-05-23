@@ -23,6 +23,7 @@
   - 🌍 GeoChart for geographical data
   - 🥧 PieChart for visualizing task distribution and application stats
 - 🔍 Integration with Arbeitsagentur Jobsuche API – Search for jobs and view basic information directly in the app
+- 👤 User authentication and authorization with ASP.NET Core Identity
 
 ## 📅 Planned Features / Roadmap
 
@@ -37,6 +38,7 @@ Here's what’s coming in future versions of Apply Log
 
 - C#
 - ASP.NET Core MVC
+- ASP.NET Core Identity
 - Entity Framework Core
 - SQL / SQLite
 - Bootstrap 5
