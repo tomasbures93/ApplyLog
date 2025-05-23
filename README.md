@@ -20,10 +20,11 @@
 - 📝 Manage your personal TODOs to keep track of tasks
 - 🔍 Search TODOs by name or applications by company name
 - 📊 Visualize data with Google ChartsAPI:
-  - 🌍 GeoChart for geographical data
-  - 🥧 PieChart for visualizing task distribution and application stats
+  - GeoChart for geographical data
+  - PieChart for visualizing task distribution and application stats
 - 🔍 Integration with Arbeitsagentur Jobsuche API – Search for jobs and view basic information directly in the app
 - 👤 User authentication and authorization with ASP.NET Core Identity
+  - User registration and login/logout
 
 ## 📅 Planned Features / Roadmap
 
