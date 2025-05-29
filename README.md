@@ -11,12 +11,14 @@
 - 29.05.2025
   - Todo Class rework
     - Added Status of Todo (Open / Complete)
+    - DatePicker fixed ( we dont need exact Time, Date should do)
     - Now you can switch between Open and Completed Todos on Todo/Index
   - Application Class rework
     - Reworked Result of Application
     - Added JobType (Full Time / Part Time / Internship / Contract )
     - Added Date of Interview
     - Added LastUpdate (for future use)
+  - Added Logout button
 - 22.05.2025
   - Identity Added ( User can Register and Login )
   - Added an option between SQLite and SQLserver
