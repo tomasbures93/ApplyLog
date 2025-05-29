@@ -50,7 +50,7 @@ else
                     {
                         <span style="color: red;">&#10008;</span>
                     } 
-                    @t.Deadline
+                    @t.Deadline.ToString("dd.MM.yyyy")
                 </td>
                 <td class="text-end">
                     <a asp-controller="Todo" asp-action="View" asp-route-id="@t.ID">View</a> | 

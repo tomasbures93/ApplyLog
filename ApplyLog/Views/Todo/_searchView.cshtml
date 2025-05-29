@@ -20,7 +20,7 @@
 					@if (DateTime.Now > item.Deadline)
 					{
 						<span style="color: red;">&#10008;</span>
-					}@item.Deadline
+					}@item.Deadline.ToString("dd.MM.yyyy")
 				</td>
 			</tr>
 		}

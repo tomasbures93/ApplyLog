@@ -33,6 +33,7 @@ namespace ApplyLog.Models
 
         [Required]
         [Display(Name = "Deadline")]
+        [DataType(DataType.Date)]
         [FutureTime]
         public DateTime Deadline {  get; set; }
 
