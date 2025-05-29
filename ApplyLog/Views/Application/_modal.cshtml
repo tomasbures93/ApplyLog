@@ -1,0 +1,24 @@
+﻿<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Delete</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p>Do you really want to delete this Application ?</p>
+                <form asp-controller="Application" asp-action="Delete">
+                    <input type="hidden" name="id" id="applId" />
+                    <hr />
+                    <input type="submit" value="Yes" class="btn btn-success" />
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

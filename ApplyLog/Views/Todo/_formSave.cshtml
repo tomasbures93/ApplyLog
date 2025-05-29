@@ -2,6 +2,11 @@
 <fieldset class="form-group">
     <table>
         <tr>
+            <td style="padding: 0.2rem;">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            </td>
+        </tr>
+        <tr>
             <td style="padding: 0.2rem;"><label asp-for="Titel"></label></td>
             <td style="padding: 0.2rem;"><input asp-for="Titel" class="form-control" /></td>
             <td style="padding: 0.2rem;"><span asp-validation-for="Titel" class="text-danger"></span></td>
@@ -16,6 +21,15 @@
                 </select>
             </td>
             <td style="padding: 0.2rem;"><span asp-validation-for="PriorityLevel" class="text-danger"></span></td>
+        </tr>
+        <tr>
+            <td style="padding: 0.2rem;"><label asp-for="Status"></label></td>
+            <td style="padding: 0.2rem;">
+                <select asp-for="Status" class="form-control">
+                    <option value="Open">Open</option>
+                    <option value="Complete">Completed</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td style="padding: 0.2rem;"><label asp-for="Deadline"></label></td>

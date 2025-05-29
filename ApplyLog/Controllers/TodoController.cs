@@ -18,22 +18,23 @@ namespace ApplyLog.Controllers
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(int page = 1, string status = "")
         {
             IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
-
-            int count = await appDbContext.Todos.Where(i => i.User == user).CountAsync();
             int maxItemsPerPage = 10;
-            int pages = (int)Math.Ceiling((double)count / maxItemsPerPage);
+            Status stat = Status.Open;
 
-            if(page == null || page < 1)
-            {
+            if (page == null || page < 1)
                 page = 1;
-            }
+            if(status == "Completed")
+                    stat = Status.Complete;
+
+            int count = await appDbContext.Todos.Where(i => i.User == user && i.Status == stat).CountAsync();
+            int pages = (int)Math.Ceiling((double)count / maxItemsPerPage);
 
             List<TODO> todos = appDbContext.Todos
                 .Skip((page - 1) * maxItemsPerPage)
-                .Where(i => i.User == user)
+                .Where(i => i.User == user && i.Status == stat)
                 .Take(maxItemsPerPage)
                 .ToList();
 
@@ -61,7 +62,7 @@ namespace ApplyLog.Controllers
 
         public IActionResult Save(TODO todo)
         {
-            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
+            IdentityUser user = userManager.GetUserAsync(User).Result;
             todo.User = user;
             if (!ModelState.IsValid)
             {
@@ -77,7 +78,7 @@ namespace ApplyLog.Controllers
 
         public IActionResult Edit(int id)
         {
-            IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
+            IdentityUser user = userManager.GetUserAsync(User).Result;
             TODO todo = appDbContext.Todos.Where(i => i.User == user).FirstOrDefault(i => i.ID == id);
             if(todo == null)
             {
@@ -103,6 +104,7 @@ namespace ApplyLog.Controllers
                 todoToAdd.Titel = todo.Titel;
                 todoToAdd.Describtion = todo.Describtion;
                 todoToAdd.Deadline = todo.Deadline;
+                todoToAdd.Status = todo.Status;
                 todoToAdd.PriorityLevel = todo.PriorityLevel;
                 appDbContext.SaveChanges();
             }
@@ -121,7 +123,7 @@ namespace ApplyLog.Controllers
             {
                 appDbContext.Todos.Remove(todo);
                 appDbContext.SaveChanges();
-                return View(todo);
+                return RedirectToAction("Index");
             } else
             {
                 return NotFound("Something went wrong");

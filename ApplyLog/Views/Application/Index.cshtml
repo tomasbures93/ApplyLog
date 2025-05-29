@@ -38,8 +38,8 @@
                 <td>@t.WhenApplied.ToString("dd.MM.yyyy")</td>
                 <td class="text-end">
                     <a asp-controller="Application" asp-action="View" asp-route-id="@t.Id">View</a> | 
-                    <a asp-controller="Application" asp-action="Edit" asp-route-id="@t.Id">Edit</a> | 
-                    <a asp-controller="Application" asp-action="Delete" asp-route-id="@t.Id">Delete</a>
+                    <a asp-controller="Application" asp-action="Edit" asp-route-id="@t.Id">Edit</a> |
+                    <a asp-controller="" asp-action="" data-bs-toggle="modal" data-bs-target="#myModal" data-application-id="@t.Id">Delete</a>
                 </td>
             </tr>
 
@@ -72,10 +72,17 @@
         </ul>
     </nav>
     </div>
+    <partial name="_modal" />
 }
 
 <script>
     function searchDB(){
         $("#formular").submit();
     }
+    const myModal = document.getElementById("myModal");                // my Modal Button in _kaffeeList
+        myModal.addEventListener("show.bs.modal", function (event) {        // I am listening on when my User clicks on Modal ( when it opens this happens)
+            const button = event.relatedTarget;                             // I targeted button which started this event
+            const appId = button.getAttribute('data-application-id');
+            document.getElementById("applId").value = appId;
+        })
 </script>

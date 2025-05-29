@@ -14,6 +14,8 @@ namespace ApplyLog
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
+            string connString = Environment.GetEnvironmentVariable("ConnectionStrings__MSSQL");
+
             string db = "";
             if(db == "sqllite")
             {
@@ -28,6 +30,7 @@ namespace ApplyLog
                 builder.Services.AddDbContext<AppDbContext>(options =>
                     options.UseLazyLoadingProxies().UseSqlServer(connectionString));
             }  
+
 
             builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 

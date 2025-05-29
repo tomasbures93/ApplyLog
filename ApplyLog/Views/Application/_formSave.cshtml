@@ -20,8 +20,12 @@
             <td style="padding: 0.2rem;"><span asp-validation-for="WhenApplied" class="text-danger"></span></td>
         </tr>
         <tr>
+            <td style="padding: 0.2rem;"><label asp-for="InterviewDate"></label></td>
+            <td style="padding: 0.2rem;"><input asp-for="InterviewDate" class="form-control" /></td>
+        </tr>
+        <tr>
             <td style="padding: 0.2rem;"><label asp-for="Gehalt"></label></td>
-            <td style="padding: 0.2rem;"><input asp-for="Gehalt" class="form-control" /></td>
+            <td style="padding: 0.2rem;"><input asp-for="Gehalt" class="form-control" placeholder="Monthly"/></td>
             <td style="padding: 0.2rem;"><span asp-validation-for="Gehalt" class="text-danger"></span></td>
         </tr>
         <tr>
@@ -32,6 +36,18 @@
                     <option value="false">No</option>
                 </select>
                 </td>
+            <td style="padding: 0.2rem;"><span asp-validation-for="HomeOffice" class="text-danger"></span></td>
+        </tr>
+        <tr>
+            <td style="padding: 0.2rem;"><label asp-for="JobType"></label></td>
+            <td style="padding: 0.2rem;">
+                <select asp-for="JobType" class="form-control">
+                    <option value="Full_Time">Full Time</option>
+                    <option value="Part_Time">Part Time</option>
+                    <option value="Internship">Internship</option>
+                    <option value="Contract">Contract</option>
+                </select>
+            </td>
             <td style="padding: 0.2rem;"><span asp-validation-for="HomeOffice" class="text-danger"></span></td>
         </tr>
         <tr>
@@ -49,9 +65,9 @@
             <td style="padding: 0.2rem;">
                 <select asp-for="Result" class="form-control">
                     <option value="Pending">Pending</option>
-                    <option value="NextRound">Next Round</option>
-                    <option value="No">No</option>
-                    <option value="Yes">Yes</option>
+                    <option value="Next_Round">Next Round</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Accepted">Accepted</option>
                 </select>
             </td>
             <td style="padding: 0.2rem;"><span asp-validation-for="Result" class="text-danger"></span></td>

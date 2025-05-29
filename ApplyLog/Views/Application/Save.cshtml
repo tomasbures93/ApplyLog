@@ -6,6 +6,14 @@
 <h1>Job Application - Save</h1>
 <partial name="_formShow" />
 <p>Job application successfully added.</p>
-<p><a asp-controller="Application" asp-action="Index">Back</a> | <a asp-controller="Application" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> | <a asp-controller="Application" asp-action="Delete" asp-route-id="@Model.Id">Delete</a></p>
+<partial name="_modal" />
+<p><a asp-controller="Application" asp-action="Index">Back</a> | <a asp-controller="Application" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> | <a asp-controller="" asp-action="" data-bs-toggle="modal" data-bs-target="#myModal" data-application-id="@Model.Id">Delete</a></p>
 
-
+<script>
+    const myModal = document.getElementById("myModal");                // my Modal Button in _kaffeeList
+        myModal.addEventListener("show.bs.modal", function (event) {        // I am listening on when my User clicks on Modal ( when it opens this happens)
+            const button = event.relatedTarget;                             // I targeted button which started this event
+            const appId = button.getAttribute('data-application-id');
+            document.getElementById("applId").value = appId;
+        })
+</script>
