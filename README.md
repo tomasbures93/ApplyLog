@@ -42,7 +42,7 @@
 
 Here's what’s coming in future versions of Apply Log
 - 1.7 🌍 Scrap GeoCharts from google and use Leaflet bibliothek
-- 1.8	📄 Job Detail View – See detailed job descriptions for results from the Jobsuche API , second API for more job listings
+- 1.8	📄 Job Detail View – See detailed job descriptions for results from the Jobsuche API
 - 1.9 💻 Responsive Design
 - 2.0	📎 Document Storage – Upload and manage your CV and other documents ( maybe )
 
