@@ -6,7 +6,10 @@ namespace ApplyLog.Models
     public class AppDbContext : IdentityDbContext
     {
         public DbSet<TODO> Todos { get; set; }
+
         public DbSet<Bewerbung> Applications { get; set; }
+
+        public DbSet<Favorite> Favorites { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 

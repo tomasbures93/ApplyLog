@@ -14,9 +14,9 @@ namespace ApplyLog
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
-            string connString = Environment.GetEnvironmentVariable("ConnectionStrings__MSSQL");
+            //string connString = Environment.GetEnvironmentVariable("ConnectionStrings__MSSQL");
 
-            string db = "";
+            string db = "sqllite";
             if(db == "sqllite")
             {
                 string DBpath = Path.Combine(Directory.GetCurrentDirectory(), builder.Configuration.GetConnectionString("MeineDatenbank"));

@@ -3,8 +3,9 @@
     ViewData["Title"] = "Index JobApplication";
 }
 
-<h1>Applications</h1>
-<p><a asp-controller="Application" asp-action="Create">Add JobApplication</a></p>
+<h1>Job Applications List</h1>
+<p><a asp-controller="Application" asp-action="Create" title="Add new JobApplication">Add JobApplication</a>
+</p>
 <div class="text-left">
     <ul>
         <li>Here you can save all your job applications!</li>
@@ -25,21 +26,20 @@
     <p>You’ve applied to @Model.Count jobs!</p>
     <table class="table">
         <tr>
-            <th>Company</th>
             <th>Position</th>
+            <th>Company</th>
             <th>Datum</th>
             <th class="text-end">Options</th>
         </tr>
         @foreach (var t in @Model)
         {
             <tr>
+                <td><a asp-controller="Application" asp-action="View" asp-route-id="@t.Id">@t.Position</a></td>
                 <td>@t.Firma.CompanyName</td>
-                <td>@t.Position</td>
                 <td>@t.WhenApplied.ToString("dd.MM.yyyy")</td>
                 <td class="text-end">
-                    <a asp-controller="Application" asp-action="View" asp-route-id="@t.Id">View</a> | 
-                    <a asp-controller="Application" asp-action="Edit" asp-route-id="@t.Id">Edit</a> |
-                    <a asp-controller="" asp-action="" data-bs-toggle="modal" data-bs-target="#myModal" data-application-id="@t.Id">Delete</a>
+                    <a asp-controller="Application" asp-action="Edit" asp-route-id="@t.Id" title="Edit Job Application"><i class="bi bi-pencil-square fs-5"></i></a> |
+                    <a asp-controller="" asp-action="" data-bs-toggle="modal" data-bs-target="#myModal" data-application-id="@t.Id" title="Delete Job Application"><i class="bi bi-trash text-danger fs-5"></i></a>
                 </td>
             </tr>
 

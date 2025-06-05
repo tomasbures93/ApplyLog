@@ -130,6 +130,22 @@ namespace ApplyLog.Controllers
             }
         }
 
+        public IActionResult Complete(int id, int stat)
+        {
+            IdentityUser user = userManager.GetUserAsync(User).Result;
+            TODO todo = appDbContext.Todos.Where(u => u.User == user && u.ID == id).FirstOrDefault();
+            if(stat == 1)
+            {
+                todo.Status = Status.Complete;
+            } else
+            {
+                todo.Status = Status.Open;
+            }
+            appDbContext.Todos.Update(todo);
+            appDbContext.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public PartialViewResult Search(string search)
         {
             IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;

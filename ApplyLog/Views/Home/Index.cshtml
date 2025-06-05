@@ -23,76 +23,75 @@
     </form>
    <div id="result">
    </div>
-    <table class="table table-bordered">
-        <tr>
-            <th class="w-50">Applications: @ViewBag.Applications</th>
-            <th class="w-50">TODOs: @ViewBag.TODOs</th>
-        </tr>
-        <tr>
-            <td class="w-50">
-                @if (Model.Item2.Count == 0)
+   <div class="row">
+       <div class="col-md-6">
+        <span class="fw-bold">Applications: @ViewBag.Applications</span>
+        @if (Model.Item2.Count == 0)
+        {
+            <p>No Applications!</p>
+        }
+        else
+        {
+            <div class="p-1">
+            </div>
+            <table class="table border">
+                @foreach (var app in Model.Item2)
                 {
-                    <p>No Applications!</p>
+                    <tr>
+                        <td class="text-start"><a asp-controller="Application" asp-action="View" asp-route-id="@app.Id" title="View Job Application">@app.Position ( @app.Firma.CompanyName )</a></td>
+                        <td class="text-end">
+                            <a asp-controller="Application" asp-action="Edit" asp-route-id="@app.Id" title="Edit Job Application"><i class="bi bi-pencil-square fs-5"></i></a>
+                        </td>
+                    </tr>
                 }
-                else
+            </table>
+        }
+       </div>
+       <div class="col-md-6">
+        <span class="fw-bold">TODOs: @ViewBag.TODOs</span>
+        @if (Model.Item1.Count == 0)
+        {
+            <p>No TODOs!</p>
+        }
+        else
+        {
+            <div class="p-1">
+            </div>
+            <table class="table border">
+                @foreach (var todo in Model.Item1)
                 {
-                    <table class="table">
-                        @foreach (var app in Model.Item2)
-                        {
-                            <tr>
-                                <td class="text-start">@app.Position</td>
-                                <td class="text-end">
-                                    <a asp-controller="Application" asp-action="View" asp-route-id="@app.Id">View</a> | 
-                                    <a asp-controller="Application" asp-action="Edit" asp-route-id="@app.Id">Edit</a>
-                                </td>
-                            </tr>
-                        }
-                    </table>
+                    <tr>
+                        <td class="text-start">
+                            @if (todo.PriorityLevel == PriorityLevel.High)
+                            {
+                                <span>❗</span>
+                            }
+                            <a asp-controller="Todo" asp-action="View" asp-route-id="@todo.ID" title="View todo @todo.Titel">
+                            @todo.Titel
+                            </a>
+                        </td>
+                        <td class="text-end">
+                            <a asp-controller="Todo" asp-action="Edit" asp-route-id="@todo.ID" title="Edit todo"><i class="bi bi-pencil-square fs-5"></i></a>
+                        </td>
+                    </tr>
                 }
-            </td>
-            <td class="w-50">
-                @if (Model.Item1.Count == 0)
-                {
-                    <p>No TODOs!</p>
-                }
-                else
-                {
-                    <table class="table">
-                        @foreach (var todo in Model.Item1)
-                        {
-                            <tr>
-                                <td class="text-start">
-                                    @if (todo.PriorityLevel == PriorityLevel.High)
-                                    {
-                                        <span>❗</span>
-                                    }
-                                    @todo.Titel
-                                    </td>
-                                <td class="text-end">
-                                    <a asp-controller="Todo" asp-action="View" asp-route-id="@todo.ID">View</a> | 
-                                    <a asp-controller="Todo" asp-action="Edit" asp-route-id="@todo.ID">Edit</a>
-                                </td>
-                            </tr>
-                        }
-                    </table>
-                }
-            </td>
-        </tr>
-    </table>
+            </table>
+        }
+       </div>
+   </div>
     <hr />
     @if(SignInManager.IsSignedIn(User)){
-    <table class="table">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Applications GeoChart</h2>
+            <div id="chartContainer2">GeoDiagram Loading</div>
+        </div>
+        <div class="col-md-6">
+            <h2>TODO Priority</h2>
+            <div id="chartContainer">Diagram Loading</div>
+        </div>
         <tr>
-            <td class="w-50">
-                <h2>Applications GeoChart</h2>
-                <div id="chartContainer2">GeoDiagram Loading</div>
-            </td>
-            <td class="w-50">
-                <h2>TODO Priority</h2>
-                <div id="chartContainer">Diagram Loading</div>
-            </td>
-        </tr>
-    </table>
+    </div>
     }
 <script>
     $(function (){

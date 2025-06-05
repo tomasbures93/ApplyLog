@@ -2,11 +2,11 @@
 @{
     ViewData["Title"] = "Index TODO";
 }
-<h1>TODOs</h1>
+<h1>TODO List</h1>
 <p>
-    <a asp-area="" asp-controller="Todo" asp-action="Create">Create New TODO</a> | 
-    <a asp-controller="Todo" asp-action="Index" asp-route-status="Pending">Not Completed</a> | 
-    <a asp-controller="Todo" asp-action="Index" asp-route-status="Completed">Completed</a>
+    <a asp-area="" asp-controller="Todo" asp-action="Create" title="Create new to-do">Create New TODO</a> | 
+    <a asp-controller="Todo" asp-action="Index" asp-route-status="Pending" title="Show still opened to-dos">Not Completed</a> |
+    <a asp-controller="Todo" asp-action="Index" asp-route-status="Completed" title="Show completed to-dos">Completed</a>
 <div class="text-left">
     <ul>
         <li>Keep track of everything you want to do!</li>
@@ -30,22 +30,20 @@ else
     <table class="table">
         <tr>
             <th>Titel</th>
-            <th>Priority</th>
-            <th class="text-end">Deadline</th>
+            <th class="text-center">Deadline</th>
             <th class="text-end">Options</th>
         </tr>
         @foreach (var t in @Model)
         {
             <tr>
-                <td>@t.Titel</td>
                 <td>
-                    @if(t.PriorityLevel == PriorityLevel.High)
-                    {
+                        @if (t.PriorityLevel == PriorityLevel.High)
+                        {
                         <span>❗</span>
-                    }
-                    @t.PriorityLevel
+                        }
+                        <a asp-controller="Todo" asp-action="View" asp-route-id="@t.ID" title="View to-do @t.Titel">@t.Titel</a>
                 </td>
-                <td class="text-end">
+                <td class="text-center">
                     @if(DateTime.Now > t.Deadline)
                     {
                         <span style="color: red;">&#10008;</span>
@@ -53,9 +51,13 @@ else
                     @t.Deadline.ToString("dd.MM.yyyy")
                 </td>
                 <td class="text-end">
-                    <a asp-controller="Todo" asp-action="View" asp-route-id="@t.ID">View</a> | 
-                    <a asp-controller="Todo" asp-action="Edit" asp-route-id="@t.ID">Edit</a> |
-                    <a asp-controller="" asp-action="" data-bs-toggle="modal" data-bs-target="#myModal" data-todo-id="@t.ID">Delete</a>
+                        @if(t.Status == Status.Open){
+                        <a asp-action="Complete" asp-route-id="@t.ID" asp-route-stat="1" class="text-success" title="Mark as Complete"><i class="bi bi-check-circle fs-5"></i></a>
+                        } else {
+                        <a asp-action="Complete" asp-route-id="@t.ID" asp-route-stat="2" class="text-danger" title="Mark as Open"><i class="bi bi-check-circle fs-5"></i></a>
+                        } | 
+                    <a asp-action="Edit" asp-route-id="@t.ID" title="Edit to-do"><i class="bi bi-pencil-square fs-5"></i></a> |
+                    <a asp-controller="" asp-action="" data-bs-toggle="modal" data-bs-target="#myModal" data-todo-id="@t.ID" title="Delete to-do"><i class="bi bi-trash text-danger fs-5"></i></a>
                 </td>
             </tr>
 
