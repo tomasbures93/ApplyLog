@@ -4,8 +4,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ConnectionStrings__MSSQL": "Server=SQLEXPRESS;Database=ApplyLogDB;Trusted_Connection=True;Encrypt=False;MultipleActiveResultSets=True;"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5225"
