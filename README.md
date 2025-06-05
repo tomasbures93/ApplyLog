@@ -1,4 +1,4 @@
-# Apply Log ( v1.4 )
+# Apply Log ( v1.5.5 )
 
 **Apply Log** is a simple web application that helps you stay organized during your job hunt. You can save your job applications, track their status, and manage a personal TODO list to ensure you never miss a step. It also integrates Google ChartsAPI for visual data representation.
 
@@ -8,9 +8,13 @@
 ![License](https://img.shields.io/github/license/tomasbures93/ApplyLog)
 
 ## Changelog
+- 05.06.2025
+  - User can save his favorite Jobs from AgenturFürArbeit API
+  - Small design rework ( Bootstrap icons )
+  - Todos can be fast marked as Complete
 - 29.05.2025
   - Todo Class rework
-    - Added Status of Todo (Open / Complete)
+    - Added Status of Todo ( Open / Complete )
     - DatePicker fixed ( we dont need exact Time, Date should do)
     - Now you can switch between Open and Completed Todos on Todo/Index
   - Application Class rework
@@ -37,11 +41,10 @@
 ## 📅 Planned Features / Roadmap
 
 Here's what’s coming in future versions of Apply Log
-- 1.5	👤 User Accounts – Register and log in to your own account
-  - 💼 Save Favorites – Mark jobs as favorites to view later
-  - 📎 Document Storage – Upload and manage your CV and other documents ( maybe )
+- 1.7 🌍 Scrap GeoCharts from google and use Leaflet bibliothek
+- 1.8	📄 Job Detail View – See detailed job descriptions for results from the Jobsuche API , second API for more job listings
 - 1.9 💻 Responsive Design
-- 2.0	📄 Job Detail View – See detailed job descriptions for results from the Jobsuche API , second API for more job listings
+- 2.0	📎 Document Storage – Upload and manage your CV and other documents ( maybe )
 
 ## 🚀 Tech Stack
 
