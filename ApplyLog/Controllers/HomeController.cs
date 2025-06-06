@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using ApplyLog.GermanCityModels;
 using ApplyLog.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -63,7 +64,17 @@ namespace ApplyLog.Controllers
         {
             IdentityUser user = userManager.GetUserAsync(User).Result;
             List<string> cities = appDbContext.Applications.Where(u => u.User == user).Select(c => c.JobOrt).Distinct().ToList();
-            return PartialView("_geoChart", cities);
+            GermanCityCoords coords = new GermanCityCoords();
+            List<City> view = new List<City>();
+            foreach(var c in cities)
+            {
+                City city = coords.GetCityGeo(c);
+                if(city != null)
+                {
+                    view.Add(city);
+                }
+            }
+            return PartialView("_geoChart", view);
         }
 
         //Something to do with that ?
