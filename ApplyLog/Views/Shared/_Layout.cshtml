@@ -18,7 +18,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-toggleable-lg navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ApplyLog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -28,18 +28,23 @@
                 <div class="navbar-collapse collapse justify-content-center">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="Index">Application</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="Index"><i class="bi bi-building"></i> Application</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Todo" asp-action="Index">Todo</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Todo" asp-action="Index"><i class="bi bi-list-task"></i> Todo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="JobSearch" asp-action="Index">Search Jobs</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="JobSearch" asp-action="Index"><i class="bi bi-search"></i> Search Jobs</a>
                         </li>
-                        </ul>
+                        @if(SignInManager.IsSignedIn(User)){
+                        <li class="nav-bar">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="AI" asp-action="Index"><i class="bi bi-gem"></i> AI Assistant</a>
+                        </li>
+                        }
+                    </ul>
                     <ul class="navbar-nav ml-auto">
                         @if (SignInManager.IsSignedIn(User))
                         {

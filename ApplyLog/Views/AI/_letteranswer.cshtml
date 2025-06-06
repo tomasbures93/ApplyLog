@@ -1,0 +1,15 @@
+﻿@using ApplyLog.AIModels
+@model AIAnswer
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<hr />
+<h4>Your Cover Letter</h4>
+<p>Generated with <span class="fw-bold">@Model.Model</span></p>
+<p>
+    @Html.Raw(Model.Text)
+</p>
+
