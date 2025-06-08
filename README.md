@@ -41,6 +41,7 @@ Here's what’s coming in future versions of Apply Log
 ## Changelog
 - 08.06.2025
   - Integration of DocX librabry to download Cover Letter as .docx document
+  - Index Page looks different if user is not logged in
 - 06.06.2025
   - Deleted Google GeoCharts
   - Used Leaflet for show location on the map
