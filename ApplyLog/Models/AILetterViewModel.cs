@@ -3,7 +3,7 @@ using System.Security.Policy;
 
 namespace ApplyLog.Models
 {
-    public class AIFormViewModel
+    public class AILetterViewModel
     {
         [Required]
         [Display(Name = "Company")]

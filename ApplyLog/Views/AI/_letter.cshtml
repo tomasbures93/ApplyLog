@@ -1,4 +1,4 @@
-﻿@model ApplyLog.Models.AIFormViewModel
+﻿@model ApplyLog.Models.AILetterViewModel
 
 <hr />
 <div class="row">
@@ -47,7 +47,7 @@
                 <h5>Job Info</h5>
             <div class="form-group">
                 <label asp-for="PositionName" class="control-label"></label>
-                <input asp-for="PositionName" class="form-control" />
+                <input asp-for="PositionName" class="form-control" placeholder="Software Developer" />
                 <span asp-validation-for="PositionName" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -57,17 +57,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="TechSkills" class="control-label"></label>
-                <input asp-for="TechSkills" class="form-control" />
+                <input asp-for="TechSkills" class="form-control" placeholder="Word, Excel, C#, ASP.NET" />
                 <span asp-validation-for="TechSkills" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SoftSkills" class="control-label"></label>
-                <input asp-for="SoftSkills" class="form-control" />
+                <input asp-for="SoftSkills" class="form-control" placeholder="Teamwork, problem-solving"/>
                 <span asp-validation-for="SoftSkills" class="text-danger"></span>
             </div>
                 <div class="form-group">
                     <label asp-for="MoreInfo" class="control-label"></label>
-                    <textarea asp-for="MoreInfo" class="form-control" ></textarea>
+                    <textarea asp-for="MoreInfo" class="form-control" placeholder="Your education (especially if relevant to the job), Any certifications or projects that relate to the position"></textarea>
                     <span asp-validation-for="MoreInfo" class="text-danger"></span>
                 </div>
             </div>

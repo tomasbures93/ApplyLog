@@ -21,3 +21,5 @@ function change(ID) {
         element.innerHTML = '<i class="bi bi-heart-fill"></i>';
     }
 }
+
+$('.carousel').carousel();

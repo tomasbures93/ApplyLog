@@ -1,6 +1,8 @@
-﻿using ApplyLog.AIModels;
+﻿using System.Text;
+using ApplyLog.AIModels;
 using ApplyLog.Models;
 using Microsoft.AspNetCore.Mvc;
+using Xceed.Words.NET;
 
 namespace ApplyLog.Controllers
 {
@@ -27,11 +29,28 @@ namespace ApplyLog.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<PartialViewResult> GenerateLetter(AIFormViewModel model)
+        public async Task<PartialViewResult> GenerateLetter(AILetterViewModel model)
         {
             AICommunication ask = new AICommunication();
-            AIAnswer answer = ask.AskAI(model).Result;
+            var response = ask.GenerateAILetter(model).Result;
+            AIAnswer answer = response.Item1;
+            ViewBag.Raw = response.Item2;
             return PartialView("_letteranswer",answer);
+        }
+
+        public FileResult DownloadLetter(string letter)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                using (var doc = DocX.Create(stream))
+                {
+                    doc.InsertParagraph(letter);
+                    doc.Save();
+                }
+                stream.Position = 0;
+
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "CoverLetter.docx");
+            }
         }
     }
 }
