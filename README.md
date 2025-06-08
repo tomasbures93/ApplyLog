@@ -1,4 +1,4 @@
-# Apply Log ( v1.7 )
+# Apply Log ( v1.8 )
 
 **ApplyLog** is a web-based application designed to support your entire job-hunting journey — from managing applications to generating cover letters. You can save and track job applications, organize your workflow with a built-in TODO list, and gain visual insights using Google ChartsAPI. With Leaflet integration, you can view all application locations on an interactive map. The app also lets you search for open positions via the Agentur für Arbeit API and even generate personalized cover letters powered by Gemini 2.0 Flash API. Whether you're just starting your search or managing multiple applications, Apply Log helps you stay organized, informed, and one step ahead.
 
@@ -14,8 +14,9 @@
 - Entity Framework Core
 - SQL / SQLite
 - Bootstrap 5
-- Google ChartsAPI
 - Leaflet Library
+- DocX Library
+- Google ChartsAPI
 - Arbeitsagentur Jobsuche API
 - Gemini 2.0 Flash API
 
@@ -27,18 +28,19 @@
 - 🔍 Search TODOs by name or applications by company name
 - 🌍 Leaflet for geographical data
 - 📊 Visualize data with Google ChartsAPI:
-  - 🥧 PieChart for visualizing task distribution and application stats
+  - 🥧 PieChart for visualizing task distribution
 - 🔍 Integration with Arbeitsagentur Jobsuche API – Search for jobs and view basic information directly in the app
-- 💻 Integrated Gemini 2.0 Flash API (Generate your Cover Letter now)
+- 💻 Integrated Gemini 2.0 Flash API (Generate your Cover Letter and Download it)
 
 ## 📅 Planned Features / Roadmap
 
 Here's what’s coming in future versions of Apply Log
-- 1.8	📄 Gemini API - Generating Emails and CVs and download those Generated documents
 - 1.9 💻 Responsive Design
 - 2.0 👤 User Register/Login profile rework
 
 ## Changelog
+- 08.06.2025
+  - Integration of DocX librabry to download Cover Letter as .docx document
 - 06.06.2025
   - Deleted Google GeoCharts
   - Used Leaflet for show location on the map
