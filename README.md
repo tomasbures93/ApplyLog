@@ -20,6 +20,7 @@
 - Arbeitsagentur Jobsuche API
 - Gemini 2.0 Flash API
 
+
 ## ✨ Features
 
 - ✅ Create, edit, and delete job applications
@@ -31,6 +32,8 @@
   - 🥧 PieChart for visualizing task distribution
 - 🔍 Integration with Arbeitsagentur Jobsuche API – Search for jobs and view basic information directly in the app
 - 💻 Integrated Gemini 2.0 Flash API (Generate your Cover Letter and Download it)
+- 👤 User authentication and authorization with ASP.NET Core Identity
+
 
 ## 📅 Planned Features / Roadmap
 
@@ -71,6 +74,7 @@
 - 22.05.2025
   - Identity Added ( User can Register and Login )
   - Added an option between SQLite and SQLserver
+
 
 ## 💻 Getting Started
 
