@@ -1,11 +1,18 @@
 ﻿@if(ViewBag.Missing == ""){
-    <p>All info ready ... click here to Generate your CV <br />
+    <hr />
+    <p>
+        You already have your CV profile set up. You can Generate your CV now!
+    <br />
+        <a asp-controller="Profile" asp-action="ManageCV">CLICK HERE</a> to see whats in your CV profile.
+    <hr />
          <a asp-action="GenerateCV" id="cvForm" class="btn btn-primary" data-ajax="true" data-ajax-update="#cvans" data-ajax-mode="replace">Generate</a>
     </p>
 } else {
     <p>
+        <hr />
         @ViewBag.Missing <br />
-        <a asp-controller="Profile" asp-action="ManageCV">Add missing stuff</a>
+        <hr />
+        <a asp-controller="Profile" asp-action="ManageCV">CLICK HERE</a> to manage your CV profile.
     </p>
 }
 

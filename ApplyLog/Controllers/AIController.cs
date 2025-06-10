@@ -41,19 +41,19 @@ namespace ApplyLog.Controllers
                     ViewBag.Missing = "";
                     if(info == null)
                     {
-                        ViewBag.Missing += "You dont have Personal info! \n";
+                        ViewBag.Missing += "You don't have Personal info! \n";
                     }
                     if(school == 0)
                     {
-                        ViewBag.Missing += "You dont have any Education info! \n";
+                        ViewBag.Missing += "You don't have any Education info! \n";
                     }
                     if(jobs == 0)
                     {
-                        ViewBag.Missing += "You dont have any Work Experience info! \n";
+                        ViewBag.Missing += "You don't have any Work Experience info! \n";
                     }
                     if(language == 0)
                     {
-                        ViewBag.Missing += "You dont have any language info! ";
+                        ViewBag.Missing += "You don't have any Language info! ";
                     }
                     return PartialView("_cv");
                 case "":
