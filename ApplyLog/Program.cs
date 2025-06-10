@@ -24,7 +24,7 @@ namespace ApplyLog
             } 
             else
             {
-                string connectionString = builder.Configuration.GetConnectionString("DBSchool");
+                string connectionString = builder.Configuration.GetConnectionString("MSSQL");
                 builder.Services.AddDbContext<AppDbContext>(options =>
                     options.UseLazyLoadingProxies().UseSqlServer(connectionString));
             }  
