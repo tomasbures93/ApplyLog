@@ -1,4 +1,4 @@
-# Apply Log ( v2.0 )
+# Apply Log
 
 **ApplyLog** is a web-based application designed to support your entire job-hunting journey — from managing applications to generating cover letters. You can save and track job applications, organize your workflow with a built-in TODO list, and gain visual insights using Google ChartsAPI. With Leaflet integration, you can view all application locations on an interactive map. The app also lets you search for open positions via the Agentur für Arbeit API and even generate personalized cover letters powered by Gemini 2.0 Flash API. Whether you're just starting your search or managing multiple applications, Apply Log helps you stay organized, informed, and one step ahead.
 
