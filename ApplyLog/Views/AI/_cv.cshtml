@@ -1,0 +1,23 @@
+﻿@if(ViewBag.Missing == ""){
+    <p>All info ready ... click here to Generate your CV <br />
+         <a asp-action="GenerateCV" id="cvForm" class="btn btn-primary" data-ajax="true" data-ajax-update="#cvans" data-ajax-mode="replace">Generate</a>
+    </p>
+} else {
+    <p>
+        @ViewBag.Missing <br />
+        <a asp-controller="Profile" asp-action="ManageCV">Add missing stuff</a>
+    </p>
+}
+
+<div id="cvans">
+
+</div>
+
+<script>
+    $(document).on("ajaxComplete", function() {
+        $.validator.unobtrusive.parse("#cvForm");
+    });
+    $('#cvForm').on('click', function() {
+        $('#cvans').html('<div class="text-center p-3 fs-1">Thinking</div>');
+    });
+</script>

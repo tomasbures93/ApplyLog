@@ -1,0 +1,45 @@
+﻿@using ApplyLog.CVModels
+@model List<EducationEntry>
+
+<a asp-action="AddSchool">Add School</a>
+
+<hr />
+
+@if (ViewBag.Status != null)
+{
+    if (ViewBag.Status.Contains("Succesfully"))
+    {
+                <p class="text-success">@ViewBag.Status</p>
+    }
+    else
+    {
+                <p class="text-danger">@ViewBag.Status</p>
+    }
+}
+<hr />
+
+@if(Model.Count == 0){
+    <p>
+        You havent added any institute yet ! <br />
+        Do it now so you can Generate CV with our <a asp-controller="AI" asp-action="Index">AI Assistant</a>
+    </p>
+}  else {
+    foreach(var s in Model){
+        <div class="row">
+            <div class="col-md-4">
+                <span class="fw-bold">@s.Institut</span>
+            </div>
+            <div class="col-md-4 text-center">
+                @s.Subject
+            </div>
+            <div class="col-md-4 text-center">
+                <a asp-controller="Profile" asp-action="EditSchool" asp-route-id="@s.Id" title="Edit School"><i class="bi bi-pencil-square fs-5"></i></a> |
+                <a asp-controller="Profile" asp-action="DeleteSchool" asp-route-id="@s.Id" title="Delete School"><i class="bi bi-trash text-danger fs-5"></i></a>
+            </div>
+        </div>
+
+    }
+}
+
+<hr />
+<a asp-action="ManageCV">Back to List</a>

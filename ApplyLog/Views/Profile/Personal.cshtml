@@ -1,0 +1,68 @@
+﻿@model ApplyLog.CVModels.PersonalInfo
+
+<h4>PersonalInfo</h4>
+<hr />
+@if(ViewBag.Status != null){
+    if (ViewBag.Status == "Succesfully Saved"){
+        <p class="text-success">@ViewBag.Status</p>
+    } else {
+        <p class="text-danger">@ViewBag.Status</p>
+    }
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Personal">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelNummer" class="control-label"></label>
+                <input asp-for="TelNummer" class="form-control" />
+                <span asp-validation-for="TelNummer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonalSummary" class="control-label"></label>
+                <textarea asp-for="PersonalSummary" class="form-control" placeholder="Something about you? What is your life goal, what is your Motto?"></textarea>
+                <span asp-validation-for="PersonalSummary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoftSkills" class="control-label"></label>
+                <input asp-for="SoftSkills" class="form-control" placeholder="Team player, problem solving" />
+                <span asp-validation-for="SoftSkills" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TechnicalSkills" class="control-label"></label>
+                <input asp-for="TechnicalSkills" class="form-control" placeholder="Word, Excel, C#, ASP.NET" />
+                <span asp-validation-for="TechnicalSkills" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hobbys" class="control-label"></label>
+                <input asp-for="Hobbys" class="form-control" placeholder="Fitness, Learning new skills" />
+                <span asp-validation-for="Hobbys" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
