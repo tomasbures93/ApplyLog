@@ -18,7 +18,7 @@
 - DocX Library
 - Google ChartsAPI
 - Arbeitsagentur Jobsuche API
-- Gemini 2.0 Flash API
+- Gemini 2.0 Flash API ( You need your OWN API KEY )
 
 
 ## ✨ Features
@@ -87,13 +87,12 @@
 
 3. Run the application
 
-## 📄 License
-This project is licensed under the MIT License – see the LICENSE file for details.
-
 ## 🖼️ Screenshots
-- Version 1.0
-![screencapture-localhost-5225-2025-04-27-20_46_44](https://github.com/user-attachments/assets/de3928d6-f80c-4bcb-8b9b-3699968b712e)
-![image](https://github.com/user-attachments/assets/1a326405-76db-4d13-8f26-ba54117dd809)
+- Version 2.0
+![screencapture-localhost-5225-2025-06-10-20_26_40](https://github.com/user-attachments/assets/17b80391-bce6-40ba-a961-ceacbbdca050)
+![screencapture-localhost-5225-AI-2025-06-10-20_26_54](https://github.com/user-attachments/assets/b11daa15-970d-4559-b4e7-586741157064)
+![screencapture-localhost-5225-JobSearch-2025-06-10-20_27_06](https://github.com/user-attachments/assets/bd51ab90-84e9-4d6c-9b51-10525b316c60)
+
 
 
 
