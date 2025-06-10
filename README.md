@@ -34,8 +34,7 @@
 
 ## 📅 Planned Features / Roadmap
 
-Here's what’s coming in future versions of Apply Log
-- 2.0 💻 Responsive Design
+- 3.0 ? Maybe one day
 
 ## Changelog
 - 10.06.2025
@@ -45,6 +44,7 @@ Here's what’s coming in future versions of Apply Log
     - Languages he can speak
     - And basic info about him
   - With that info user can Generate curriculum vitae with help of Gemini 2.0 Flash API
+  - Small Redesign here and there
 - 08.06.2025
   - Integration of DocX librabry to download Cover Letter as .docx document
   - Index Page looks different if user is not logged in
