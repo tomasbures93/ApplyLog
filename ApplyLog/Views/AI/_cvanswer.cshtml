@@ -1,0 +1,10 @@
+﻿@using ApplyLog.AIModels
+@model AIAnswer
+
+<h4>Your Curriculum Vitae</h4>
+<p>Generated with <span class="fw-bold">@Model.Model</span></p>
+<p class="fw-bold">This was generated with AI. Please read it carefully and edit it to suit your needs.</p>
+<p>
+    @Html.Raw(Model.Text)
+</p>
+<a asp-action="DownloadCV" asp-route-cv="@ViewBag.Raw" class="btn btn-primary"><i class="bi bi-download"></i> Download</a>

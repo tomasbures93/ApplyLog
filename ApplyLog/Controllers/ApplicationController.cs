@@ -80,7 +80,6 @@ namespace ApplyLog.Controllers
             return View(application);
         }
 
-        // Rework completely
         public IActionResult EditSave(Bewerbung bewerbung, int companyID, int kontaktID)
         {
             if (!ModelState.IsValid)
@@ -97,6 +96,9 @@ namespace ApplyLog.Controllers
                 applicationToEdit.HomeOffice = bewerbung.HomeOffice;
                 applicationToEdit.ApplicationLink = bewerbung.ApplicationLink;
                 applicationToEdit.Result = bewerbung.Result;
+                applicationToEdit.InterviewDate = bewerbung.InterviewDate;
+                applicationToEdit.JobType = bewerbung.JobType;
+                applicationToEdit.LastUpdateAt= DateTime.Now;
                 applicationToEdit.Firma.CompanyName = bewerbung.Firma.CompanyName;
                 applicationToEdit.Firma.Ort = bewerbung.Firma.Ort;
                 applicationToEdit.Firma.Kontakt.Number = bewerbung.Firma.Kontakt.Number;
@@ -111,14 +113,22 @@ namespace ApplyLog.Controllers
         {
             IdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
             Bewerbung bewerbung = appDbContext.Applications.FirstOrDefault(i => i.Id == id && i.User == user);
+            Firma firma = bewerbung.Firma;
+            Kontakt contact = bewerbung.Firma.Kontakt;
             if(bewerbung == null)
             {
                 return NotFound("Something went Wrong");
             }
             Bewerbung viewData = appDbContext.Applications.Where(i => i.User == user).Include(f => f.Firma).Include(k => k.Firma.Kontakt).FirstOrDefault(i => i.Id == id);
             appDbContext.Applications.Remove(bewerbung);
+
+            if (contact != null)
+                appDbContext.Remove(contact);
+            if (firma != null)
+                appDbContext.Remove(firma);
+
             appDbContext.SaveChanges();
-            return View(viewData);
+            return RedirectToAction("Index");
         }
 
         public PartialViewResult Search(string search)

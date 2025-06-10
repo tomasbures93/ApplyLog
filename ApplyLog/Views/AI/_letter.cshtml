@@ -1,0 +1,93 @@
+﻿@model ApplyLog.Models.AILetterViewModel
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="GenerateLetter" id="letterForm" method="post" data-ajax="true" data-ajax-update="#letterans" data-ajax-mode="replace">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                <h5>Company Info</h5>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyAddress" class="control-label"></label>
+                <input asp-for="CompanyAddress" class="form-control" />
+                <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+            </div>
+            </div>
+            <hr />
+            <div>
+                <h5>Your Info</h5>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            </div>
+            <hr />
+            <div>
+                <h5>Job Info</h5>
+            <div class="form-group">
+                <label asp-for="PositionName" class="control-label"></label>
+                <input asp-for="PositionName" class="form-control" placeholder="Software Developer" />
+                <span asp-validation-for="PositionName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WhyIwant" class="control-label"></label>
+                <textarea asp-for="WhyIwant" class="form-control" ></textarea>
+                <span asp-validation-for="WhyIwant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TechSkills" class="control-label"></label>
+                <input asp-for="TechSkills" class="form-control" placeholder="Word, Excel, C#, ASP.NET" />
+                <span asp-validation-for="TechSkills" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoftSkills" class="control-label"></label>
+                <input asp-for="SoftSkills" class="form-control" placeholder="Teamwork, problem-solving"/>
+                <span asp-validation-for="SoftSkills" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <label asp-for="MoreInfo" class="control-label"></label>
+                    <textarea asp-for="MoreInfo" class="form-control" placeholder="Your education (especially if relevant to the job), Any certifications or projects that relate to the position"></textarea>
+                    <span asp-validation-for="MoreInfo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Generate" id="submitButton" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="letterans">
+
+</div>
+
+<script>
+    $(document).on("ajaxComplete", function() {
+        $.validator.unobtrusive.parse("#letterForm");
+    });
+    $('#submitButton').on('click', function() {
+        $('#letterans').html('<div class="text-center p-3 fs-1">Thinking</div>');
+    });
+</script>

@@ -11,6 +11,12 @@ namespace ApplyLog.Models
         Medium,
         High
     }
+
+    public enum Status
+    {
+        Open,
+        Complete
+    }
     public class TODO
     {
         public int ID { get; set; }
@@ -20,16 +26,18 @@ namespace ApplyLog.Models
         [Display(Name = "Title")]
         public string Titel { get; set; }
 
-        [Required]
         [StringLength(400, ErrorMessage = "Maximum 400 Characters")]
         [Display(Name = "Description")]
-        public string Describtion { get; set; }
+        public string? Describtion { get; set; }
         public DateTime CreationTime { get; set; }
 
         [Required]
         [Display(Name = "Deadline")]
+        [DataType(DataType.Date)]
         [FutureTime]
         public DateTime Deadline {  get; set; }
+
+        public Status Status { get; set; }
 
         [Required]
         [Display(Name = "Priority")]
@@ -40,6 +48,7 @@ namespace ApplyLog.Models
         public TODO()
         {
             CreationTime = DateTime.Now;
+            Status = Status.Open;
         }
     }
 }

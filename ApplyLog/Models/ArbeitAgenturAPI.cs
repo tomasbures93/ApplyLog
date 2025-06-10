@@ -36,7 +36,7 @@ namespace ApplyLog.Models
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Etwas falch");
+                Console.WriteLine("Something went wrong");
             }
 
             return (List, maxPages);

@@ -1,0 +1,17 @@
+﻿@using ApplyLog.AIModels
+@model AIAnswer
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<hr />
+<h4>Your Cover Letter</h4>
+<p>Generated with <span class="fw-bold">@Model.Model</span></p>
+<p class="fw-bold">This was generated with AI. Please read it carefully and edit it to suit your needs.</p>
+<p>
+    @Html.Raw(Model.Text)
+</p>
+<a asp-action="DownloadLetter" asp-route-letter="@ViewBag.Raw" class="btn btn-primary"><i class="bi bi-download"></i> Download</a>
+

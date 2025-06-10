@@ -12,7 +12,7 @@ namespace ApplyLog.Validation
         {
             if(value is DateTime dateValue)
             {
-                return dateValue > DateTime.Now;
+                return dateValue >= DateTime.Today;
             }
             return false;
         }

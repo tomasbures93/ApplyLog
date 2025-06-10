@@ -1,0 +1,30 @@
+﻿@if(ViewBag.Missing == ""){
+    <hr />
+    <p>
+        You already have your CV profile set up. You can Generate your CV now!
+    <br />
+        <a asp-controller="Profile" asp-action="ManageCV">CLICK HERE</a> to see whats in your CV profile.
+    <hr />
+         <a asp-action="GenerateCV" id="cvForm" class="btn btn-primary" data-ajax="true" data-ajax-update="#cvans" data-ajax-mode="replace">Generate</a>
+    </p>
+} else {
+    <p>
+        <hr />
+        @ViewBag.Missing <br />
+        <hr />
+        <a asp-controller="Profile" asp-action="ManageCV">CLICK HERE</a> to manage your CV profile.
+    </p>
+}
+
+<div id="cvans">
+
+</div>
+
+<script>
+    $(document).on("ajaxComplete", function() {
+        $.validator.unobtrusive.parse("#cvForm");
+    });
+    $('#cvForm').on('click', function() {
+        $('#cvans').html('<div class="text-center p-3 fs-1">Thinking</div>');
+    });
+</script>

@@ -1,35 +1,25 @@
-﻿@model List<string>
-<div id="geoChart" style="width: 500px; height: 500px;"></div>
+﻿@using ApplyLog.GermanCityModels
+@model List<City>
+<div id="map" style="width: 450px; height: 450px;"></div>
 
-<script type="module">
-    //const API_KEY = 'insert your OWN Google API';
 
-    // If you want your GeoChart API to work, you need your own API KEY
-    google.charts.load('current', {
-    'packages': ['geochart'],
-    'mapsApiKey': API_KEY
-    });
-    google.charts.setOnLoadCallback(drawMarkersMap);
+<script>
+	const map = L.map('map').setView([50, 10], 5);
 
-    function drawMarkersMap() {
-    var data = google.visualization.arrayToDataTable([
-    ['City'],
-    @foreach(var city in Model)
-    {
-        @: ['@city'],
-    }
-    ]);
+	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(map);
 
-         var options = {
-           title: 'Your JobApplication Map',
-           region: 'DE',
-           displayMode: 'markers',
-           resolution: 'provinces',
-           colorAxis: {colors: ['red', 'yellow']},
-           datalessRegionColor: '#c9d1cb'
-        }
+	const cities = @Html.Raw(Json.Serialize(Model));
 
-         var chart = new google.visualization.GeoChart(document.getElementById('geoChart'));
-         chart.draw(data, options);
-       };
+	cities.forEach(city => {
+		let name = city.name;
+		let lat = city.coords.lat;
+		let lon = city.coords.lon;
+
+		const marker = L.marker([lat, lon]).addTo(map)
+				.bindPopup(name).openPopup();
+
+	});
 </script>

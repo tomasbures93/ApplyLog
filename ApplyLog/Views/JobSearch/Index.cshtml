@@ -2,6 +2,8 @@
 @model List<Stellenangebote>
 @{
     ViewData["Title"] = "Index";
+    int counter = 0;
+    string name = "";
 }
 
 <h1>Job Search</h1>
@@ -14,10 +16,19 @@
         <li>Click search — and discover your next career move!.</li>
     </ul>
 </div>
+@if(User.Identity.IsAuthenticated){
+    <hr />
+    <a asp-action="Favorites" class="nav-link" title="Show my Favorites">Show Favorites</a>
+}
 <hr />
 <form asp-action="Index" asp-controller="JobSearch" method="post">
     <div class="input-group">
-        <input type="text" class="form-control w-50" placeholder="Job Titel" name="jobTitel" value="@ViewBag.jobTitel">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Job Titel</span>
+        </div>
+        <input type="text" class="form-control w-50" placeholder="Bäcker, Koch, Fachinformatiker" name="jobTitel" value="@ViewBag.jobTitel">
+    </div>
+    <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">City</span>
         </div>
@@ -44,47 +55,80 @@
 else
 {
     <hr />
-        <partial name="_jobPages" />
+    <partial name="_jobPages" />
     <hr />
     @foreach (var job in Model)
     {
-        <table class="table table-bordered">
-            <tr class="table-active">
+        name = "fav" + counter;
+        <div class="border rounded">
+        <div class="row">
+            <div class="col-sm-12 text-center m-2">
                 @{
                     string url = "https://www.arbeitsagentur.de/jobsuche/suche?id=" + job.refnr;
                 }
-                <td colspan="2" class="text-center">
-                    <a href="@url" target="_blank" class="fw-bold text-danger nav-link">
-                        @if (job.titel == null || job.titel == "")
-                        {
-                            @job.beruf
-                        }
-                        else
-                        {
-                            @job.titel <span>( @job.beruf )</span>
-                        }
+                <a href="@url" target="_blank" class="fw-bold text-primary text-decoration-none fs-5" title="@job.beruf">
+                    @if (job.titel == null || job.titel == "")
+                    {
+                        @job.beruf
+                    }
+                    else
+                    {
+                        @job.titel
+                    }
                     </a>
-                </td>
-            </tr>
-            <tr>
-                <th class="w-25">Company</th>
-                <td>@job.arbeitgeber</td>
-            </tr>
-            <tr>
-                <th class="w-25">City</th>
-                <td>@job.arbeitsort.ort</td>
-            </tr>
-            <tr>
-                <th class="w-25">Posted</th>
-                <td>@job.aktuelleVeroeffentlichungsdatum</td>
-            </tr>
-        </table>
+                    @if(User.Identity.IsAuthenticated){
+
+                        <a asp-action="FavoriteSave" class="text-danger fs-5" id="@name" onclick="change('@name')" asp-route-Refnr="@job.refnr" asp-route-Beruf="@job.beruf" asp-route-Titel="@job.titel" asp-route-Firma="@job.arbeitgeber" title="Favorites">
+                            @if(ViewBag.Favorites.Contains(job.refnr)){
+                                <i class="bi bi-heart-fill"></i>
+                            } else {
+                                <i class="bi bi-heart"></i>
+                            }
+                            @{ counter = counter + 1; }
+                        </a>
+                    }
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-sm-1">
+                 <i class="bi bi-house-door"></i>
+            </div>
+            <div class="col-sm-2">
+                @job.arbeitsort.ort
+            </div>
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-1">
+                <i class="bi bi-calendar"></i>
+            </div>
+            <div class="col-sm-2">
+                @job.aktuelleVeroeffentlichungsdatum
+            </div>
+                <div class="col-sm-1">
+                </div>
+            <div class="col-sm-1">
+                <i class="bi bi-rocket-takeoff"></i>
+            </div>
+            <div class="col-sm-2">
+                @job.eintrittsdatum
+            </div>
+                <div class="col-sm-1">
+                </div>
+        </div>
         <hr />
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                    <span class="fw-bold">@job.beruf</span> by <span class="text-decoration-underline">@job.arbeitgeber</span>
+            </div>
+            <div class="m-2">
+            </div>
+        </div>
+        </div>
+        <div class="m-2">
+        </div>
     }
 
     <partial name="_jobPages" />
 }
-
-
 
 

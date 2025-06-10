@@ -6,9 +6,17 @@ namespace ApplyLog.Models
     public enum Result
     {
         Pending,
-        NextRound,
-        No,
-        Yes
+        Next_Round,
+        Rejected,
+        Accepted
+    }
+
+    public enum JobType
+    {
+        Full_Time,
+        Part_Time,
+        Internship,
+        Contract
     }
     public class Bewerbung
     {
@@ -26,6 +34,7 @@ namespace ApplyLog.Models
 
         [Required(ErrorMessage = "Please insert when have you Applied!")]
         [Display(Name = "Date Applied")]
+        [DataType(DataType.Date)]
         public DateTime WhenApplied { get; set; }
 
         [Display(Name = "Expected Salary")]
@@ -47,8 +56,23 @@ namespace ApplyLog.Models
         [Display(Name = "Application Result")]
         public Result Result { get; set; }
 
+        [Required]
+        [Display(Name = "Type of Job")]
+        public JobType JobType { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? InterviewDate { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime LastUpdateAt { get; set; }
+
         public virtual Firma Firma { get; set; }
 
         public virtual IdentityUser? User { get; set; }
+
+        public Bewerbung()
+        {
+            LastUpdateAt = DateTime.Now;
+        }
     }
 }

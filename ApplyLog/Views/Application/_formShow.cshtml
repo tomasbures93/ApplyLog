@@ -7,6 +7,10 @@
 		<td>@Model.Position</td>
 	</tr>
 	<tr>
+		<th class="w-25">Type of Job</th>
+		<td>@Model.JobType</td>
+	</tr>
+	<tr>
 		<th class="w-25">Application Result</th>
 		<td>@Model.Result</td>
 	</tr>
@@ -16,11 +20,15 @@
 	</tr>
 	<tr>
 		<th class="w-25">Date Applied</th>
-		<td>@Model.WhenApplied</td>
+		<td>@Model.WhenApplied.ToString("dd.MM.yyyy")</td>
+	</tr>
+	<tr>
+		<th class="w-25">Interview Date</th>
+		<td>@Model?.InterviewDate?.ToString("dd.MM.yyyy")</td>
 	</tr>
 	<tr>
 		<th class="w-25">Expected Salary</th>
-		<td>@Model.Gehalt</td>
+		<td>@Model?.Gehalt</td>
 	</tr>
 	<tr>
 		<th class="w-25">Comment / Notes</th>
@@ -39,7 +47,7 @@
 				urllink = "https://" + urllink;
 			}
 		}
-		<td><a href="@urllink" target="_blank">@Model.ApplicationLink</a></td>
+		<td><a href="@urllink" target="_blank">@Model?.ApplicationLink</a></td>
 	</tr>
 	<tr>
 		<th colspan="2" class="text-center">Company Info</th>
@@ -50,7 +58,7 @@
 	</tr>
 	<tr>
 		<th class="w-25">Company location</th>
-		<td>@Model.Firma.Ort</td>
+		<td>@Model.Firma?.Ort</td>
 	</tr>
 	<tr>
 		<th class="w-25">Phone Number</th>
@@ -58,7 +66,7 @@
 	</tr>
 	<tr>
 		<th class="w-25">EMail</th>
-		<td>@Model.Firma.Kontakt.Email</td>
+		<td>@Model.Firma.Kontakt?.Email</td>
 	</tr>
 	<tr>
 		<th class="w-25">Website</th>
@@ -69,6 +77,6 @@
 				url = "https://" + url;
 			}
 		}
-		<td><a href="@url" target="_blank">@Model.Firma.Kontakt.Website</a></td>
+		<td><a href="@url" target="_blank">@Model.Firma.Kontakt?.Website</a></td>
 	</tr>
 </table>

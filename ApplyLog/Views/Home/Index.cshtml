@@ -8,92 +8,136 @@
 <div class="text-center">
     <h1 class="display-4">Welcome to ApplyLog</h1>
 </div>
-    <div class="text-left">
-        <ul>
-            <li>Here, you can easily keep track of your job search journey.</li>
-            <li>Save your job applications, search through them by company name, and see where you've applied on the Germany map. </li>
-            <li>Create your own to-do list with priorities to stay organized.</li>
-            <li>Check out your progress in colorful charts showing your application locations and your to-do priorities. </li>
-            <li>Ready to get started? You can also search for new job offers directly — just click "Search Jobs" in the menu!</li>
-        </ul>
-    </div>
-    <hr />
+<div class="text-left">
+    <ul>
+        <li>Here, you can easily keep track of your job search journey.</li>
+        <li>Save your job applications, search through them by company name, and see where you've applied on the Germany map. </li>
+        <li>Create your own to-do list with priorities to stay organized.</li>
+        <li>Check out your progress in colorful charts showing your application locations and your to-do priorities. </li>
+        <li>Ready to get started? You can also search for new job offers directly — just click "Search Jobs" in the menu!</li>
+    </ul>
+</div>
+<hr />
+@if (SignInManager.IsSignedIn(User))
+{
     <form asp-action="Search" asp-controller="Home" data-ajax="true" data-ajax-update="#result" data-ajax-method="GET" data-ajax-mode="replace" id="formSearch">
         <input type="search" id="search" name="search" class="form-control m-tb" placeholder="Search something" onkeyup="searchDBFull();"/>
     </form>
-   <div id="result">
-   </div>
-    <table class="table table-bordered">
-        <tr>
-            <th class="w-50">Applications: @ViewBag.Applications</th>
-            <th class="w-50">TODOs: @ViewBag.TODOs</th>
-        </tr>
-        <tr>
-            <td class="w-50">
-                @if (Model.Item2.Count == 0)
-                {
-                    <p>No Applications!</p>
-                }
-                else
-                {
-                    <table class="table">
-                        @foreach (var app in Model.Item2)
-                        {
-                            <tr>
-                                <td class="text-start">@app.Position</td>
-                                <td class="text-end">
-                                    <a asp-controller="Application" asp-action="View" asp-route-id="@app.Id">View</a> | 
-                                    <a asp-controller="Application" asp-action="Edit" asp-route-id="@app.Id">Edit</a>
-                                </td>
-                            </tr>
-                        }
-                    </table>
-                }
-            </td>
-            <td class="w-50">
-                @if (Model.Item1.Count == 0)
-                {
-                    <p>No TODOs!</p>
-                }
-                else
-                {
-                    <table class="table">
-                        @foreach (var todo in Model.Item1)
-                        {
-                            <tr>
-                                <td class="text-start">
-                                    @if (todo.PriorityLevel == PriorityLevel.High)
-                                    {
-                                        <span>❗</span>
-                                    }
+    <div id="result">
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <span class="fw-bold">Applications: @ViewBag.Applications</span>
+            @if (Model.Item2.Count == 0)
+            {
+                <p>No Applications!</p>
+            }
+            else
+            {
+                <div class="p-1">
+                </div>
+                <table class="table border">
+                    @foreach (var app in Model.Item2)
+                    {
+                        <tr>
+                            <td class="text-start"><a asp-controller="Application" asp-action="View" asp-route-id="@app.Id" title="View Job Application">@app.Position ( @app.Firma.CompanyName )</a></td>
+                            <td class="text-end">
+                                <a asp-controller="Application" asp-action="Edit" asp-route-id="@app.Id" title="Edit Job Application"><i class="bi bi-pencil-square fs-5"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+        <div class="col-md-6">
+            <span class="fw-bold">TODOs: @ViewBag.TODOs</span>
+            @if (Model.Item1.Count == 0)
+            {
+                <p>No TODOs!</p>
+            }
+            else
+            {
+                <div class="p-1">
+                </div>
+                <table class="table border">
+                    @foreach (var todo in Model.Item1)
+                    {
+                        <tr>
+                            <td class="text-start">
+                                @if (todo.PriorityLevel == PriorityLevel.High)
+                                {
+                                    <span>❗</span>
+                                }
+                                <a asp-controller="Todo" asp-action="View" asp-route-id="@todo.ID" title="View todo @todo.Titel">
                                     @todo.Titel
-                                    </td>
-                                <td class="text-end">
-                                    <a asp-controller="Todo" asp-action="View" asp-route-id="@todo.ID">View</a> | 
-                                    <a asp-controller="Todo" asp-action="Edit" asp-route-id="@todo.ID">Edit</a>
-                                </td>
-                            </tr>
-                        }
-                    </table>
-                }
-            </td>
-        </tr>
-    </table>
+                                </a>
+                            </td>
+                            <td class="text-end">
+                                <a asp-controller="Todo" asp-action="Edit" asp-route-id="@todo.ID" title="Edit todo"><i class="bi bi-pencil-square fs-5"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+    </div>
     <hr />
-    @if(SignInManager.IsSignedIn(User)){
-    <table class="table">
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Applications GeoChart</h2>
+            <div id="chartContainer2">GeoDiagram Loading</div>
+        </div>
+        <div class="col-lg-6">
+            <h2>TODO Priority</h2>
+            <div id="chartContainer">Diagram Loading</div>
+        </div>
         <tr>
-            <td class="w-50">
-                <h2>Applications GeoChart</h2>
-                <div id="chartContainer2">GeoDiagram Loading</div>
-            </td>
-            <td class="w-50">
-                <h2>TODO Priority</h2>
-                <div id="chartContainer">Diagram Loading</div>
-            </td>
-        </tr>
-    </table>
-    }
+    </div>
+} else
+{
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/pics/index.png" class="img-fluid" />
+                <div class="carousel-caption d-none d-md-block bg-secondary">
+                    <h5>Index Page</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+				<img src="~/pics/ai.png" class="img-fluid"/>
+                <div class="carousel-caption d-none d-md-block bg-secondary">
+                    <h5>AI Assistent</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="~/pics/apps.png" class="img-fluid" />
+                <div class="carousel-caption d-none d-md-block bg-secondary">
+                    <h5>Creating Job Applications</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+				<img src="~/pics/jobsearch.png" class="img-fluid"/>
+                <div class="carousel-caption d-none d-md-block bg-secondary">
+                    <h5>Find your dream job</h5>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+}
 <script>
     $(function (){
         $("#chartContainer2").load("/Home/GeoChart");

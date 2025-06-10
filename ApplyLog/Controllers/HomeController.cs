@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using ApplyLog.GermanCityModels;
 using ApplyLog.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,13 +20,13 @@ namespace ApplyLog.Controllers
         public IActionResult Index()
         {
             IdentityUser user = userManager.GetUserAsync(User).Result;
-            List<TODO> todoList = appDbContext.Todos.Where(u => u.User == user)
+            List<TODO> todoList = appDbContext.Todos.Where(u => u.User == user && u.Status == Status.Open)
                                                     .OrderBy(d => d.Deadline).Take(5).ToList();
             List<Bewerbung> applicationsList = appDbContext.Applications.Where(u => u.User == user)
                                                                         .OrderBy(d => d.WhenApplied).Take(5).ToList();
             var data = new Tuple<List<TODO>,  List<Bewerbung>>(todoList, applicationsList);
             ViewBag.Applications = appDbContext.Applications.Where(u => u.User == user).Count();
-            ViewBag.TODOs = appDbContext.Todos.Where(u => u.User == user).Count();
+            ViewBag.TODOs = appDbContext.Todos.Where(u => u.User == user && u.Status == Status.Open).Count();
             return View(data);
         }
 
@@ -50,11 +51,11 @@ namespace ApplyLog.Controllers
             var dataForChart = new[]
             {
                 new { Label = "Low", Count =  appDbContext.Todos
-                                                            .Where(p => p.PriorityLevel == PriorityLevel.Low && p.User == user).Count() },
+                                              .Where(p => p.PriorityLevel == PriorityLevel.Low && p.User == user && p.Status == Status.Open).Count() },
                 new { Label = "Medium", Count = appDbContext.Todos
-                                                            .Where(p => p.PriorityLevel == PriorityLevel.Medium && p.User == user).Count() },
+                                                .Where(p => p.PriorityLevel == PriorityLevel.Medium && p.User == user && p.Status == Status.Open).Count() },
                 new { Label = "High", Count = appDbContext.Todos
-                                                            .Where(p => p.PriorityLevel == PriorityLevel.High && p.User == user).Count() }
+                                              .Where(p => p.PriorityLevel == PriorityLevel.High && p.User == user && p.Status == Status.Open).Count() }
             };
             return PartialView("_chartTodo", dataForChart);
         }
@@ -63,7 +64,17 @@ namespace ApplyLog.Controllers
         {
             IdentityUser user = userManager.GetUserAsync(User).Result;
             List<string> cities = appDbContext.Applications.Where(u => u.User == user).Select(c => c.JobOrt).Distinct().ToList();
-            return PartialView("_geoChart", cities);
+            GermanCityCoords coords = new GermanCityCoords();
+            List<City> view = new List<City>();
+            foreach(var c in cities)
+            {
+                City city = coords.GetCityGeo(c);
+                if(city != null)
+                {
+                    view.Add(city);
+                }
+            }
+            return PartialView("_geoChart", view);
         }
 
         //Something to do with that ?
