@@ -37,7 +37,7 @@
 
 ## 📅 Planned Features / Roadmap
 
-- 3.0 ? Maybe one day
+- Nothing for now
 
 ## Changelog
 - 10.06.2025
