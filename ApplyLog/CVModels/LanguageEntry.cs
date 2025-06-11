@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace ApplyLog.CVModels
 {
@@ -17,7 +18,11 @@ namespace ApplyLog.CVModels
         public int Id { get; set; }
 
         public virtual IdentityUser? User { get; set; }
+
+        [Display(Name = "Language")]
         public string LanguageName { get; set; }
+
+        [Display(Name = "Niveau")]
         public LanguageLevel Level { get; set; }
     }
 }

@@ -44,16 +44,16 @@ namespace ApplyLog
                 context.Database.EnsureCreated();
 
                 //// Add new Roles
-                //var roleContext = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                //var roleExists = roleContext.RoleExistsAsync("Admin").Result;
-                //if (!roleExists)
-                //{
-                //    var admin = roleContext.CreateAsync(new IdentityRole("Admin"));
-                //    admin.Wait();
-                //    var user = roleContext.CreateAsync(new IdentityRole("User"));
-                //    user.Wait();
-                //    app.Logger.LogInformation("-> Admin & User Role Created");
-                //}
+                var roleContext = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var roleExists = roleContext.RoleExistsAsync("Admin").Result;
+                if (!roleExists)
+                {
+                    var admin = roleContext.CreateAsync(new IdentityRole("Admin"));
+                    admin.Wait();
+                    var user = roleContext.CreateAsync(new IdentityRole("User"));
+                    user.Wait();
+                    app.Logger.LogInformation("-> Admin & User Role Created");
+                }
 
                 //// Admin User
                 //var userContext = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
