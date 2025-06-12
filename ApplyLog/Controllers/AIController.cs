@@ -67,7 +67,7 @@ namespace ApplyLog.Controllers
             AICommunication ask = new AICommunication();
             var response = ask.GenerateAILetter(model).Result;
             AIAnswer answer = response.Item1;
-            ViewBag.Raw = response.Item2;
+            TempData["TextToPrint"] = response.Item2;
             return PartialView("_letteranswer",answer);
         }
 
@@ -85,12 +85,13 @@ namespace ApplyLog.Controllers
             }
             var response = ask.GenerateCV(personal, jobs, schools, languages).Result;
             AIAnswer answer = response.Item1;
-            ViewBag.Raw = response.Item2;
+            TempData["TextToPrint"] = response.Item2;
             return PartialView("_cvanswer", answer);
         }
 
-        public FileResult DownloadLetter(string letter)
+        public FileResult DownloadLetter()
         {
+            string letter = TempData["TextToPrint"].ToString();
             using (MemoryStream stream = new MemoryStream())
             {
                 using (var doc = DocX.Create(stream))
@@ -103,8 +104,9 @@ namespace ApplyLog.Controllers
             }
         }
 
-        public FileResult DownloadCV(string cv)
+        public FileResult DownloadCV()
         {
+            string cv = TempData["TextToPrint"].ToString();
             using(MemoryStream stream = new MemoryStream())
             {
                 using(var doc = DocX.Create(stream))
