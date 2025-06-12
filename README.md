@@ -20,7 +20,7 @@
 - DocX Library
 - Google ChartsAPI
 - Arbeitsagentur Jobsuche API
-- Gemini 2.0 Flash API ( You need your OWN API KEY )
+- Gemini 2.0 Flash API ( You need your **OWN API KEY** )
 
 
 ## ✨ Features
